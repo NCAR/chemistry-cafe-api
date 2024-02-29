@@ -20,38 +20,40 @@ namespace Chemistry_Cafe_API.Controllers
         }
         
 
-        //TEMPLATE CODE, UNIMPLEMENTED FUNCTIONS BELOW
 
-        // GET: api/Family
-        [HttpGet]
+        // GET: api/Family/all
+        [HttpGet("all")]
         public async Task<IReadOnlyList<Family>> Get()
         {
             return await familyService.GetFamiliesAsync();
         }
 
-        // GET api/<ValuesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // GET api/Family/5
+        [HttpGet("{uuid}")]
+        public async Task<Family?> GetFamilyAsync(int uuid)
         {
-            return "value";
+            return await familyService.GetFamilyAsync(uuid);
         }
 
-        // POST api/<ValuesController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        // POST api/Family/create
+        [HttpPost("create")]
+        public async Task CreateFamily([FromBody] string name)
         {
+            await familyService.CreateFamilyAsync(name);
         }
 
-        // PUT api/<ValuesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // PUT api/family/5
+        [HttpPut("update")]
+        public async Task Put([FromBody] Family family)
         {
+            await familyService.UpdateFamilyAsync(family);
         }
 
-        // DELETE api/<ValuesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // DELETE api/Family/delete/5
+        [HttpDelete("delete/{uuid}")]
+        public async Task Delete(int uuid)
         {
+            await familyService.DeleteFamilyAsync(uuid);
         }
     }
 }

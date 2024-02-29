@@ -3,28 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{62738D41-607A-4727-AADD-D4B41BA734C9}|Chemistry Cafe API.csproj|c:\\users\\evan\\documents\\github\\chemistry-cafe-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62738D41-607A-4727-AADD-D4B41BA734C9}|Chemistry Cafe API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{62738D41-607A-4727-AADD-D4B41BA734C9}|Chemistry Cafe API.csproj|c:\\users\\evan\\documents\\github\\chemistry-cafe-api\\services\\familyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62738D41-607A-4727-AADD-D4B41BA734C9}|Chemistry Cafe API.csproj|solutionrelative:services\\familyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{62738D41-607A-4727-AADD-D4B41BA734C9}|Chemistry Cafe API.csproj|c:\\users\\evan\\documents\\github\\chemistry-cafe-api\\controllers\\familycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62738D41-607A-4727-AADD-D4B41BA734C9}|Chemistry Cafe API.csproj|solutionrelative:controllers\\familycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62738D41-607A-4727-AADD-D4B41BA734C9}|Chemistry Cafe API.csproj|c:\\users\\evan\\documents\\github\\chemistry-cafe-api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{62738D41-607A-4727-AADD-D4B41BA734C9}|Chemistry Cafe API.csproj|solutionrelative:dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{62738D41-607A-4727-AADD-D4B41BA734C9}|Chemistry Cafe API.csproj|c:\\users\\evan\\documents\\github\\chemistry-cafe-api\\services\\familyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62738D41-607A-4727-AADD-D4B41BA734C9}|Chemistry Cafe API.csproj|solutionrelative:services\\familyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{62738D41-607A-4727-AADD-D4B41BA734C9}|Chemistry Cafe API.csproj|c:\\users\\evan\\documents\\github\\chemistry-cafe-api\\models\\family.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62738D41-607A-4727-AADD-D4B41BA734C9}|Chemistry Cafe API.csproj|solutionrelative:models\\family.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{62738D41-607A-4727-AADD-D4B41BA734C9}|Chemistry Cafe API.csproj|c:\\users\\evan\\documents\\github\\chemistry-cafe-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62738D41-607A-4727-AADD-D4B41BA734C9}|Chemistry Cafe API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{62738D41-607A-4727-AADD-D4B41BA734C9}|Chemistry Cafe API.csproj|c:\\users\\evan\\documents\\github\\chemistry-cafe-api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{62738D41-607A-4727-AADD-D4B41BA734C9}|Chemistry Cafe API.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62738D41-607A-4727-AADD-D4B41BA734C9}|Chemistry Cafe API.csproj|c:\\users\\evan\\documents\\github\\chemistry-cafe-api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{62738D41-607A-4727-AADD-D4B41BA734C9}|Chemistry Cafe API.csproj|solutionrelative:dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Evan\\.nuget\\packages\\mysqlconnector\\2.3.5\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
@@ -49,34 +49,25 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Dockerfile",
-              "DocumentMoniker": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Dockerfile",
-              "RelativeDocumentMoniker": "Dockerfile",
-              "ToolTip": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Dockerfile",
-              "RelativeToolTip": "Dockerfile",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-02-27T19:25:18.9Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAxAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-27T17:23:57.37Z",
               "EditorCaption": ""
@@ -87,29 +78,29 @@
               "Title": "FamilyController.cs",
               "DocumentMoniker": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Controllers\\FamilyController.cs",
               "RelativeDocumentMoniker": "Controllers\\FamilyController.cs",
-              "ToolTip": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Controllers\\FamilyController.cs",
-              "RelativeToolTip": "Controllers\\FamilyController.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABYAAAA2AAAA",
+              "ToolTip": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Controllers\\FamilyController.cs*",
+              "RelativeToolTip": "Controllers\\FamilyController.cs*",
+              "ViewState": "AQIAACAAAAAAAAAAAAA9wDcAAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-27T17:47:55.09Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "FamilyService.cs",
               "DocumentMoniker": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Services\\FamilyService.cs",
               "RelativeDocumentMoniker": "Services\\FamilyService.cs",
-              "ToolTip": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Services\\FamilyService.cs",
-              "RelativeToolTip": "Services\\FamilyService.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAcAAAA5AAAA",
+              "ToolTip": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Services\\FamilyService.cs*",
+              "RelativeToolTip": "Services\\FamilyService.cs*",
+              "ViewState": "AQIAACgAAAAAAAAAAAA3wDkAAAA7AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-27T18:01:02.908Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "Family.cs",
               "DocumentMoniker": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Models\\Family.cs",
               "RelativeDocumentMoniker": "Models\\Family.cs",
@@ -117,17 +108,30 @@
               "RelativeToolTip": "Models\\Family.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-27T17:48:40.373Z"
+              "WhenOpened": "2024-02-27T17:48:40.373Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Dockerfile",
+              "RelativeDocumentMoniker": "Dockerfile",
+              "ToolTip": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Dockerfile",
+              "RelativeToolTip": "Dockerfile",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-02-27T19:25:18.9Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
               "ToolTip": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\appsettings.json",
               "RelativeToolTip": "appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAACVAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-02-27T17:49:06.939Z"
             },
@@ -178,10 +182,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2024-02-27T17:26:49.879Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             }
           ]
         }

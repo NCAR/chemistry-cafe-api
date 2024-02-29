@@ -66,3 +66,4 @@ C:\Users\Evan\Documents\GitHub\chemistry-cafe-api\obj\Debug\net8.0\refint\Chemis
 C:\Users\Evan\Documents\GitHub\chemistry-cafe-api\obj\Debug\net8.0\Chemistry Cafe API.pdb
 C:\Users\Evan\Documents\GitHub\chemistry-cafe-api\obj\Debug\net8.0\Chemistry Cafe API.genruntimeconfig.cache
 C:\Users\Evan\Documents\GitHub\chemistry-cafe-api\obj\Debug\net8.0\ref\Chemistry Cafe API.dll
+C:\Users\Evan\Documents\GitHub\chemistry-cafe-api\obj\Debug\net8.0\Chemistry Cafe API.sourcelink.json

@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Chemistry Cafe API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+68d8dff53634caadce496f155f6f26f60cb1a7e3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6b9f7aa7ac8dc20b0d89301fe4d22320986b05a9")]
 [assembly: System.Reflection.AssemblyProductAttribute("Chemistry Cafe API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Chemistry Cafe API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
