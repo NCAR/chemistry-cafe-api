@@ -2,7 +2,7 @@
 {
     public class Family
     {
-        public int uuid { get; set; }
+        public Guid uuid { get; set; }
         public string? name { get; set; }
         public bool isDel {  get; set; }
     }

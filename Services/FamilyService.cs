@@ -16,7 +16,7 @@ namespace Chemistry_Cafe_API.Services
             return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
 
-        public async Task<Family?> GetFamilyAsync(int uuid)
+        public async Task<Family?> GetFamilyAsync(Guid uuid)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -33,7 +33,11 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"INSERT INTO Family (name) VALUES (@name);";
+            Guid familyID = Guid.NewGuid();
+
+            command.CommandText = @"INSERT INTO Family (uuid, name) VALUES (@uuid, @name);";
+
+            command.Parameters.AddWithValue("@uuid", familyID);
             command.Parameters.AddWithValue("@name", name);
 
             await command.ExecuteNonQueryAsync();
@@ -73,7 +77,7 @@ namespace Chemistry_Cafe_API.Services
                 {
                     var family = new Family
                     {
-                        uuid = reader.GetInt32(0),
+                        uuid = reader.GetGuid(0),
                         name = reader.GetString(1),
                         isDel = reader.GetBoolean(2),
                     };

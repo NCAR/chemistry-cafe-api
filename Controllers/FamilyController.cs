@@ -30,7 +30,7 @@ namespace Chemistry_Cafe_API.Controllers
 
         // GET api/Family/5
         [HttpGet("{uuid}")]
-        public async Task<Family?> GetFamilyAsync(int uuid)
+        public async Task<Family?> GetFamilyAsync(Guid uuid)
         {
             return await familyService.GetFamilyAsync(uuid);
         }
