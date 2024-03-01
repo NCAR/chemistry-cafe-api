@@ -2,7 +2,6 @@
 using Chemistry_Cafe_API.Services;
 using Microsoft.AspNetCore.Mvc;
 using MySqlConnector;
-using System.Web.Http.Cors;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,8 +18,6 @@ namespace Chemistry_Cafe_API.Controllers
         {
             this.familyService = new FamilyService(db);
         }
-
-
 
         // GET: api/Family/all
         [HttpGet("all")]

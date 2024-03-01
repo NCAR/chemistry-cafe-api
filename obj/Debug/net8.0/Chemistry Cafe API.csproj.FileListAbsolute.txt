@@ -80,15 +80,9 @@ C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0
 C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\Chemistry Cafe API.runtimeconfig.json
 C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\Chemistry Cafe API.dll
 C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\Chemistry Cafe API.pdb
-C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\System.Web.Cors.dll
-C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\System.Net.Http.Formatting.dll
-C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\System.Web.Http.dll
-C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\System.Web.Http.Cors.dll
 C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\MySqlConnector.dll
 C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\MySqlConnector.DependencyInjection.dll
-C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\Newtonsoft.Json.dll
-C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
 C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
