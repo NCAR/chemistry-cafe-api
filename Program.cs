@@ -12,6 +12,7 @@ builder.Services.AddSwaggerGen();
 //Adds SQL data source from appsettings.json file
 builder.Services.AddMySqlDataSource(builder.Configuration.GetConnectionString("Default")!);
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -20,6 +21,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
 
 app.UseHttpsRedirection();
 
