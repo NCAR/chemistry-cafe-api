@@ -23,7 +23,6 @@ namespace Chemistry_Cafe_API.Controllers
 
 
         // GET: api/Family/all
-        [EnableCors(origins: "http://127.0.0.1:5173", headers: "*", methods: "*")]
         [HttpGet("all")]
         public async Task<IReadOnlyList<Family>> Get()
         {

@@ -73,3 +73,44 @@ C:\Users\Evan\Documents\GitHub\chemistry-cafe-api\bin\Debug\net8.0\System.Web.Ht
 C:\Users\Evan\Documents\GitHub\chemistry-cafe-api\bin\Debug\net8.0\System.Web.Http.Cors.dll
 C:\Users\Evan\Documents\GitHub\chemistry-cafe-api\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\Evan\Documents\GitHub\chemistry-cafe-api\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\appsettings.Development.json
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\appsettings.json
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\Chemistry Cafe API.exe
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\Chemistry Cafe API.deps.json
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\Chemistry Cafe API.runtimeconfig.json
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\Chemistry Cafe API.dll
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\Chemistry Cafe API.pdb
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\System.Web.Cors.dll
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\System.Net.Http.Formatting.dll
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\System.Web.Http.dll
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\System.Web.Http.Cors.dll
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\MySqlConnector.dll
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\MySqlConnector.DependencyInjection.dll
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\Chemistry Cafe API.csproj.AssemblyReference.cache
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\Chemistry Cafe API.GeneratedMSBuildEditorConfig.editorconfig
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\Chemistry Cafe API.AssemblyInfoInputs.cache
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\Chemistry Cafe API.AssemblyInfo.cs
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\Chemistry Cafe API.csproj.CoreCompileInputs.cache
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\Chemistry Cafe API.MvcApplicationPartsAssemblyInfo.cs
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\Chemistry Cafe API.MvcApplicationPartsAssemblyInfo.cache
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\Chemistry Cafe API.sourcelink.json
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\staticwebassets.build.json
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\staticwebassets.development.json
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\staticwebassets\msbuild.Chemistry Cafe API.Microsoft.AspNetCore.StaticWebAssets.props
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\staticwebassets\msbuild.build.Chemistry Cafe API.props
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Chemistry Cafe API.props
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Chemistry Cafe API.props
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\staticwebassets.pack.json
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\scopedcss\bundle\Chemistry Cafe API.styles.css
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\Chemistr.5D5F407E.Up2Date
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\Chemistry Cafe API.dll
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\refint\Chemistry Cafe API.dll
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\Chemistry Cafe API.pdb
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\Chemistry Cafe API.genruntimeconfig.cache
+C:\College_Stuff\2024_Spring\CSCE482\Project\chemistry-cafe-api\obj\Debug\net8.0\ref\Chemistry Cafe API.dll
