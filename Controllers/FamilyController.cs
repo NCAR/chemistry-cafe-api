@@ -18,8 +18,6 @@ namespace Chemistry_Cafe_API.Controllers
         {
             this.familyService = new FamilyService(db);
         }
-        
-
 
         // GET: api/Family/all
         [HttpGet("all")]

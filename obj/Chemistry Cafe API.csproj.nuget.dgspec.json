@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Chemistry Cafe API.csproj": {}
+    "C:\\College_Stuff\\2024_Spring\\CSCE482\\Project\\chemistry-cafe-api\\Chemistry Cafe API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Chemistry Cafe API.csproj": {
+    "C:\\College_Stuff\\2024_Spring\\CSCE482\\Project\\chemistry-cafe-api\\Chemistry Cafe API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Chemistry Cafe API.csproj",
+        "projectUniqueName": "C:\\College_Stuff\\2024_Spring\\CSCE482\\Project\\chemistry-cafe-api\\Chemistry Cafe API.csproj",
         "projectName": "Chemistry Cafe API",
-        "projectPath": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Chemistry Cafe API.csproj",
-        "packagesPath": "C:\\Users\\Evan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\obj\\",
+        "projectPath": "C:\\College_Stuff\\2024_Spring\\CSCE482\\Project\\chemistry-cafe-api\\Chemistry Cafe API.csproj",
+        "packagesPath": "C:\\Users\\gigem\\.nuget\\packages\\",
+        "outputPath": "C:\\College_Stuff\\2024_Spring\\CSCE482\\Project\\chemistry-cafe-api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Evan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\gigem\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

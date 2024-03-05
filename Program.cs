@@ -12,7 +12,16 @@ builder.Services.AddSwaggerGen();
 //Adds SQL data source from appsettings.json file
 builder.Services.AddMySqlDataSource(builder.Configuration.GetConnectionString("Default")!);
 
+
 var app = builder.Build();
+
+// Configure CORS
+app.UseCors(options =>
+{
+    options.WithOrigins("http://localhost:5173")
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
