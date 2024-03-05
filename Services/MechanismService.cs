@@ -3,89 +3,88 @@ using System.Data.Common;
 using MySqlConnector;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace Chemistry_Cafe_API.Services
 {
-    public class FamilyService(MySqlDataSource database)
+    public class MechanismService(MySqlDataSource database)
     {
-        public async Task<IReadOnlyList<Family>> GetFamiliesAsync()
+        public async Task<IReadOnlyList<Mechanism>> GetFamiliesAsync()
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = "SELECT * FROM Family";
+            command.CommandText = "SELECT * FROM Mechanism";
             return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
 
-        public async Task<Family?> GetFamilyAsync(Guid uuid)
+        public async Task<Mechanism?> GetMechanismAsync(Guid uuid)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"SELECT * FROM Family WHERE uuid = @id";
+            command.CommandText = @"SELECT * FROM Mechanism WHERE uuid = @id";
             command.Parameters.AddWithValue("@id", uuid);
 
             var result = await ReadAllAsync(await command.ExecuteReaderAsync());
             return result.FirstOrDefault();
         }
 
-        public async Task CreateFamilyAsync(string name)
+        public async Task CreateMechanismAsync(string name)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            Guid familyID = Guid.NewGuid();
+            Guid mechanismID = Guid.NewGuid();
 
-            command.CommandText = @"INSERT INTO Family (uuid, name) VALUES (@uuid, @name);";
+            command.CommandText = @"INSERT INTO Mechanism (uuid, name) VALUES (@uuid, @name);";
 
-            command.Parameters.AddWithValue("@uuid", familyID);
+            command.Parameters.AddWithValue("@uuid", mechanismID);
             command.Parameters.AddWithValue("@name", name);
 
             await command.ExecuteNonQueryAsync();
         }
-        public async Task UpdateFamilyAsync(Family family)
+        public async Task UpdateMechanismAsync(Mechanism mechanism)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Family SET name = @name, isDel = @isDel WHERE uuid = @uuid;";
+            command.CommandText = @"UPDATE Mechanism SET name = @name, isDel = @isDel WHERE uuid = @uuid;";
 
-            command.Parameters.AddWithValue("@uuid", family.uuid);
-            command.Parameters.AddWithValue("@name", family.name);
-            command.Parameters.AddWithValue("@isDel", family.isDel);
+            command.Parameters.AddWithValue("@uuid", mechanism.uuid);
+            command.Parameters.AddWithValue("@name", mechanism.name);
+            command.Parameters.AddWithValue("@isDel", mechanism.isDel);
 
             await command.ExecuteNonQueryAsync();
         }
 
-        public async Task DeleteFamilyAsync(Guid uuid)
+        public async Task DeleteMechanismAsync(Guid uuid)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Family SET isDel = 1 WHERE uuid = @uuid;";
+            command.CommandText = @"UPDATE Mechanism SET isDel = 1 WHERE uuid = @uuid;";
 
             command.Parameters.AddWithValue("@uuid", uuid);
 
             await command.ExecuteNonQueryAsync();
         }
 
-        private async Task<IReadOnlyList<Family>> ReadAllAsync(DbDataReader reader)
+        private async Task<IReadOnlyList<Mechanism>> ReadAllAsync(DbDataReader reader)
         {
-            var families = new List<Family>();
+            var mechanisms = new List<Mechanism>();
             using (reader)
             {
                 while (await reader.ReadAsync())
                 {
-                    var family = new Family
+                    var mechanism = new Mechanism
                     {
                         uuid = reader.GetGuid(0),
                         name = reader.GetString(1),
                         isDel = reader.GetBoolean(2),
                     };
-                    families.Add(family);
+                    mechanisms.Add(mechanism);
                 }
             }
-            return families;
+            return mechanisms;
         }
     }
 }
