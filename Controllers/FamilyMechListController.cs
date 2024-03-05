@@ -11,47 +11,47 @@ namespace Chemistry_Cafe_API.Controllers
     [ApiController]
     public class FamilyMechListController : ControllerBase
     {
-        private FamilyMechListService familyService;
+        private FamilyMechListService familyMechListService;
         
         //Injects sql data source setup in Program.cs
         public FamilyMechListController([FromServices] MySqlDataSource db)
         {
-            this.familyService = new FamilyMechListService(db);
+            this.familyMechListService = new FamilyMechListService(db);
         }
 
         // GET: api/FamilyMechList/all
         [HttpGet("all")]
         public async Task<IReadOnlyList<FamilyMechList>> Get()
         {
-            return await familyService.GetFamiliesAsync();
+            return await familyMechListService.GetFamiliesAsync();
         }
 
-        // GET api/Family/5
+        // GET api/FamilyMechList/5
         [HttpGet("{uuid}")]
         public async Task<FamilyMechList?> GetFamilyAsync(Guid uuid)
         {
-            return await familyService.GetFamilyMechListAsync(uuid);
+            return await familyMechListService.GetFamilyMechListAsync(uuid);
         }
 
-        // POST api/Family/create
+        // POST api/FamilyMechList/create
         [HttpPost("create")]
         public async Task CreateFamily([FromBody] FamilyMechList newFamilyMechList)
         {
-            await familyService.CreateFamilyMechListAsync(newFamilyMechList);
+            await familyMechListService.CreateFamilyMechListAsync(newFamilyMechList);
         }
 
-        // PUT api/Family/5
+        // PUT api/FamilyMechList/5
         [HttpPut("update")]
         public async Task Put([FromBody] FamilyMechList newFamilyMechList)
         {
-            await familyService.UpdateFamilyMechListAsync(newFamilyMechList);
+            await familyMechListService.UpdateFamilyMechListAsync(newFamilyMechList);
         }
 
-        // DELETE api/Family/delete/5
+        // DELETE api/FamilyMechList/delete/5
         [HttpDelete("delete/{uuid}")]
         public async Task Delete(Guid uuid)
         {
-            await familyService.DeleteFamilyMechListAsync(uuid);
+            await familyMechListService.DeleteFamilyMechListAsync(uuid);
         }
     }
 }
