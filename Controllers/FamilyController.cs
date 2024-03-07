@@ -12,7 +12,7 @@ namespace Chemistry_Cafe_API.Controllers
     public class FamilyController : ControllerBase
     {
         private FamilyService familyService;
-        
+
         //Injects sql data source setup in Program.cs
         public FamilyController([FromServices] MySqlDataSource db)
         {
@@ -40,7 +40,7 @@ namespace Chemistry_Cafe_API.Controllers
             await familyService.CreateFamilyAsync(name);
         }
 
-        // PUT api/family/5
+        // PUT api/Family/5
         [HttpPut("update")]
         public async Task Put([FromBody] Family family)
         {
@@ -49,7 +49,7 @@ namespace Chemistry_Cafe_API.Controllers
 
         // DELETE api/Family/delete/5
         [HttpDelete("delete/{uuid}")]
-        public async Task Delete(int uuid)
+        public async Task Delete(Guid uuid)
         {
             await familyService.DeleteFamilyAsync(uuid);
         }
