@@ -5,86 +5,86 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Chemistry_Cafe_API.Services
 {
-    public class MechanismService(MySqlDataSource database)
+    public class TagMechanismService(MySqlDataSource database)
     {
-        public async Task<IReadOnlyList<Mechanism>> GetMechanismsAsync()
+        public async Task<IReadOnlyList<TagMechanism>> GetTagMechanismsAsync()
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = "SELECT * FROM Mechanism";
+            command.CommandText = "SELECT * FROM TagMechanism";
             return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
 
-        public async Task<Mechanism?> GetMechanismAsync(Guid uuid)
+        public async Task<TagMechanism?> GetTagMechanismAsync(Guid uuid)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"SELECT * FROM Mechanism WHERE uuid = @id";
+            command.CommandText = @"SELECT * FROM TagMechanism WHERE uuid = @id";
             command.Parameters.AddWithValue("@id", uuid);
 
             var result = await ReadAllAsync(await command.ExecuteReaderAsync());
             return result.FirstOrDefault();
         }
 
-        public async Task CreateMechanismAsync(string name)
+        public async Task CreateTagMechanismAsync(string tag)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            Guid mechanismID = Guid.NewGuid();
+            Guid tagMechanismID = Guid.NewGuid();
 
-            command.CommandText = @"INSERT INTO Mechanism (uuid, name) VALUES (@uuid, @name);";
+            command.CommandText = @"INSERT INTO TagMechanism (uuid, tag) VALUES (@uuid, @tag);";
 
-            command.Parameters.AddWithValue("@uuid", mechanismID);
-            command.Parameters.AddWithValue("@name", name);
+            command.Parameters.AddWithValue("@uuid", tagMechanismID);
+            command.Parameters.AddWithValue("@tag", tag);
 
             await command.ExecuteNonQueryAsync();
         }
-        public async Task UpdateMechanismAsync(Mechanism mechanism)
+        public async Task UpdateTagMechanismAsync(TagMechanism tagMechanism)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Mechanism SET name = @name, isDel = @isDel WHERE uuid = @uuid;";
+            command.CommandText = @"UPDATE TagMechanism SET tag = @tag, isDel = @isDel WHERE uuid = @uuid;";
 
-            command.Parameters.AddWithValue("@uuid", mechanism.uuid);
-            command.Parameters.AddWithValue("@name", mechanism.name);
-            command.Parameters.AddWithValue("@isDel", mechanism.isDel);
+            command.Parameters.AddWithValue("@uuid", tagMechanism.uuid);
+            command.Parameters.AddWithValue("@tag", tagMechanism.tag);
+            command.Parameters.AddWithValue("@isDel", tagMechanism.isDel);
 
             await command.ExecuteNonQueryAsync();
         }
 
-        public async Task DeleteMechanismAsync(Guid uuid)
+        public async Task DeleteTagMechanismAsync(Guid uuid)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Mechanism SET isDel = 1 WHERE uuid = @uuid;";
+            command.CommandText = @"UPDATE TagMechanism SET isDel = 1 WHERE uuid = @uuid;";
 
             command.Parameters.AddWithValue("@uuid", uuid);
 
             await command.ExecuteNonQueryAsync();
         }
 
-        private async Task<IReadOnlyList<Mechanism>> ReadAllAsync(DbDataReader reader)
+        private async Task<IReadOnlyList<TagMechanism>> ReadAllAsync(DbDataReader reader)
         {
-            var mechanisms = new List<Mechanism>();
+            var tagMechanisms = new List<TagMechanism>();
             using (reader)
             {
                 while (await reader.ReadAsync())
                 {
-                    var mechanism = new Mechanism
+                    var tagMechanism = new TagMechanism
                     {
                         uuid = reader.GetGuid(0),
-                        name = reader.GetString(1),
+                        tag = reader.GetString(1),
                         isDel = reader.GetBoolean(2),
                     };
-                    mechanisms.Add(mechanism);
+                    tagMechanisms.Add(tagMechanism);
                 }
             }
-            return mechanisms;
+            return tagMechanisms;
         }
     }
 }

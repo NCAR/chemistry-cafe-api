@@ -28,14 +28,14 @@ namespace Chemistry_Cafe_API.Controllers
 
         // GET api/Species/5
         [HttpGet("{uuid}")]
-        public async Task<Species?> GetSpeciesAsync(Guid uuid)
+        public async Task<Species?> Get(Guid uuid)
         {
             return await speciesService.GetSpeciesAsync(uuid);
         }
 
         // POST api/Species/create
         [HttpPost("create")]
-        public async Task CreateSpecies([FromBody] string type)
+        public async Task Create([FromBody] string type)
         {
             await speciesService.CreateSpeciesAsync(type);
         }

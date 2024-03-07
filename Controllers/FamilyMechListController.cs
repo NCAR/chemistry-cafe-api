@@ -23,19 +23,19 @@ namespace Chemistry_Cafe_API.Controllers
         [HttpGet("all")]
         public async Task<IReadOnlyList<FamilyMechList>> Get()
         {
-            return await familyMechListService.GetFamiliesAsync();
+            return await familyMechListService.GetFamilyMechListsAsync();
         }
 
         // GET api/FamilyMechList/5
         [HttpGet("{uuid}")]
-        public async Task<FamilyMechList?> GetFamilyAsync(Guid uuid)
+        public async Task<FamilyMechList?> Get(Guid uuid)
         {
             return await familyMechListService.GetFamilyMechListAsync(uuid);
         }
 
         // POST api/FamilyMechList/create
         [HttpPost("create")]
-        public async Task CreateFamily([FromBody] FamilyMechList newFamilyMechList)
+        public async Task Create([FromBody] FamilyMechList newFamilyMechList)
         {
             await familyMechListService.CreateFamilyMechListAsync(newFamilyMechList);
         }

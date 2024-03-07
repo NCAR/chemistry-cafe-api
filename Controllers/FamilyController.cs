@@ -28,14 +28,14 @@ namespace Chemistry_Cafe_API.Controllers
 
         // GET api/Family/5
         [HttpGet("{uuid}")]
-        public async Task<Family?> GetFamilyAsync(Guid uuid)
+        public async Task<Family?> Get(Guid uuid)
         {
             return await familyService.GetFamilyAsync(uuid);
         }
 
         // POST api/Family/create
         [HttpPost("create")]
-        public async Task CreateFamily([FromBody] string name)
+        public async Task Create([FromBody] string name)
         {
             await familyService.CreateFamilyAsync(name);
         }
