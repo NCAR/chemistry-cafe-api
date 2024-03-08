@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Chemistry_Cafe_API.Services
 {
-    public class TagMechanismReactionListService (MySqlDataSource database)
+    public class TagMechanismSpeciesListService (MySqlDataSource database)
     {
-        public async Task<IReadOnlyList<TagMechanismReactionList>> GetTagMechanismReactionsAsync()
+        public async Task<IReadOnlyList<TagMechanismSpeciesList>> GetTagMechanismSpeciessAsync()
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -16,7 +16,7 @@ namespace Chemistry_Cafe_API.Services
             return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
 
-        public async Task<TagMechanismReactionList?> GetTagMechanismReactionAsync(Guid uuid)
+        public async Task<TagMechanismSpeciesList?> GetTagMechanismSpeciesAsync(Guid uuid)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -28,39 +28,39 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
-        public async Task CreateTagMechanismReactionAsync(TagMechanismReactionList newTagMechanismReaction)
+        public async Task CreateTagMechanismSpeciesAsync(TagMechanismSpeciesList newTagMechanismSpecies)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            Guid tagMechanismReactionID = Guid.NewGuid();
+            Guid tagMechanismSpeciesID = Guid.NewGuid();
 
-            command.CommandText = @"INSERT INTO Mechanism_TagMechanism (uuid, reaction_uuid, tag_mechanism_uuid, version) VALUES (@uuid, @reaction_uuid, @tag_mechanism_uuid, @version);";
+            command.CommandText = @"INSERT INTO Mechanism_TagMechanism (uuid, species_uuid, tag_mechanism_uuid, version) VALUES (@uuid, @species_uuid, @tag_mechanism_uuid, @version);";
 
-            command.Parameters.AddWithValue("@uuid", tagMechanismReactionID);
-            command.Parameters.AddWithValue("@reaction_uuid", newTagMechanismReaction.reaction_uuid);
-            command.Parameters.AddWithValue("@tag_mechanism_uuid", newTagMechanismReaction.tag_mechanism_uuid);
-            command.Parameters.AddWithValue("@version", newTagMechanismReaction.version);
+            command.Parameters.AddWithValue("@uuid", tagMechanismSpeciesID);
+            command.Parameters.AddWithValue("@species_uuid", newTagMechanismSpecies.species_uuid);
+            command.Parameters.AddWithValue("@tag_mechanism_uuid", newTagMechanismSpecies.tag_mechanism_uuid);
+            command.Parameters.AddWithValue("@version", newTagMechanismSpecies.version);
 
             await command.ExecuteNonQueryAsync();
         }
-        public async Task UpdateTagMechanismReactionAsync(TagMechanismReactionList tagMechanismReaction)
+        public async Task UpdateTagMechanismSpeciesAsync(TagMechanismSpeciesList tagMechanismSpecies)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Mechanism_TagMechanism SET reaction_uuid = @reaction_uuid, tag_mechanism_uuid = @tag_mechanism_uuid, version = @version, isDel = @isDel WHERE uuid = @uuid;";
+            command.CommandText = @"UPDATE Mechanism_TagMechanism SET species_uuid = @species_uuid, tag_mechanism_uuid = @tag_mechanism_uuid, version = @version, isDel = @isDel WHERE uuid = @uuid;";
             
-            command.Parameters.AddWithValue("@uuid", tagMechanismReaction.uuid);
-            command.Parameters.AddWithValue("@reaction_uuid", tagMechanismReaction.reaction_uuid);
-            command.Parameters.AddWithValue("@tag_mechanism_uuid", tagMechanismReaction.tag_mechanism_uuid);
-            command.Parameters.AddWithValue("@version", tagMechanismReaction.version);
-            command.Parameters.AddWithValue("@isDel", tagMechanismReaction.isDel);
+            command.Parameters.AddWithValue("@uuid", tagMechanismSpecies.uuid);
+            command.Parameters.AddWithValue("@species_uuid", tagMechanismSpecies.species_uuid);
+            command.Parameters.AddWithValue("@tag_mechanism_uuid", tagMechanismSpecies.tag_mechanism_uuid);
+            command.Parameters.AddWithValue("@version", tagMechanismSpecies.version);
+            command.Parameters.AddWithValue("@isDel", tagMechanismSpecies.isDel);
 
             await command.ExecuteNonQueryAsync();
         }
 
-        public async Task DeleteTagMechanismReactionAsync(Guid uuid)
+        public async Task DeleteTagMechanismSpeciesAsync(Guid uuid)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -72,25 +72,25 @@ namespace Chemistry_Cafe_API.Services
             await command.ExecuteNonQueryAsync();
         }
 
-        private async Task<IReadOnlyList<TagMechanismReactionList>> ReadAllAsync(DbDataReader reader)
+        private async Task<IReadOnlyList<TagMechanismSpeciesList>> ReadAllAsync(DbDataReader reader)
         {
-            var tagMechanismReaction = new List<TagMechanismReactionList>();
+            var tagMechanismSpecies = new List<TagMechanismSpeciesList>();
             using (reader)
             {
                 while (await reader.ReadAsync())
                 {
-                    var mechTag = new TagMechanismReactionList
+                    var mechTag = new TagMechanismSpeciesList
                     {
                         uuid = reader.GetGuid(0),
-                        reaction_uuid = reader.GetGuid(1),
+                        species_uuid = reader.GetGuid(1),
                         tag_mechanism_uuid = reader.GetGuid(2),
                         version = reader.GetString(3),
                         isDel = reader.GetBoolean(4),
                     };
-                    tagMechanismReaction.Add(mechTag);
+                    tagMechanismSpecies.Add(mechTag);
                 }
             }
-            return tagMechanismReaction;
+            return tagMechanismSpecies;
         }
     }
 }

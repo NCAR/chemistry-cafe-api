@@ -28,6 +28,18 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
+        public async Task<Mechanism?> GetFamilyMechanismsAsync(Guid family_uuid)
+        {
+            using var connection = await database.OpenConnectionAsync();
+            using var command = connection.CreateCommand();
+
+            command.CommandText = @"SELECT Mechanism.uuid, Mechanism.name, Mechanism.isDel FROM Family_Mechanism_List LEFT JOIN Mechanism ON mechanism_uuid = Mechanism.uuid WHERE family_uuid = @id;";
+            command.Parameters.AddWithValue("@id", family_uuid);
+
+            var result = await ReadAllAsync(await command.ExecuteReaderAsync());
+            return result.FirstOrDefault();
+        }
+
         public async Task CreateMechanismAsync(string name)
         {
             using var connection = await database.OpenConnectionAsync();

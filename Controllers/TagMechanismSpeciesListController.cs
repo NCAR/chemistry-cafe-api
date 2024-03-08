@@ -9,49 +9,49 @@ namespace Chemistry_Cafe_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TagMechanismReactionListController : ControllerBase
+    public class TagMechanismSpeciesListController : ControllerBase
     {
-        private TagMechanismReactionListService mechTagMechService;
+        private TagMechanismSpeciesListService tagMechSpeciesList;
         
         //Injects sql data source setup in Program.cs
-        public TagMechanismReactionListController([FromServices] MySqlDataSource db)
+        public TagMechanismSpeciesListController([FromServices] MySqlDataSource db)
         {
-            this.mechTagMechService = new TagMechanismReactionListService(db);
+            this.tagMechSpeciesList = new TagMechanismSpeciesListService(db);
         }
 
-        // GET: api/TagMechanismReaction/all
+        // GET: api/TagMechanismSpecies/all
         [HttpGet("all")]
-        public async Task<IReadOnlyList<TagMechanismReactionList>> Get()
+        public async Task<IReadOnlyList<TagMechanismSpeciesList>> Get()
         {
-            return await mechTagMechService.GetTagMechanismReactionsAsync();
+            return await tagMechSpeciesList.GetTagMechanismSpeciessAsync();
         }
 
-        // GET api/TagMechanismReaction/5
+        // GET api/TagMechanismSpecies/5
         [HttpGet("{uuid}")]
-        public async Task<TagMechanismReactionList?> Get(Guid uuid)
+        public async Task<TagMechanismSpeciesList?> Get(Guid uuid)
         {
-            return await mechTagMechService.GetTagMechanismReactionAsync(uuid);
+            return await tagMechSpeciesList.GetTagMechanismSpeciesAsync(uuid);
         }
 
-        // POST api/TagMechanismReaction/create
+        // POST api/TagMechanismSpecies/create
         [HttpPost("create")]
-        public async Task Create([FromBody] TagMechanismReactionList newTagMechanismReaction)
+        public async Task Create([FromBody] TagMechanismSpeciesList newTagMechanismSpecies)
         {
-            await mechTagMechService.CreateTagMechanismReactionAsync(newTagMechanismReaction);
+            await tagMechSpeciesList.CreateTagMechanismSpeciesAsync(newTagMechanismSpecies);
         }
 
-        // PUT api/TagMechanismReaction/5
+        // PUT api/TagMechanismSpecies/5
         [HttpPut("update")]
-        public async Task Put([FromBody] TagMechanismReactionList newTagMechanismReaction)
+        public async Task Put([FromBody] TagMechanismSpeciesList newTagMechanismSpecies)
         {
-            await mechTagMechService.UpdateTagMechanismReactionAsync(newTagMechanismReaction);
+            await tagMechSpeciesList.UpdateTagMechanismSpeciesAsync(newTagMechanismSpecies);
         }
 
-        // DELETE api/TagMechanismReaction/delete/5
+        // DELETE api/TagMechanismSpecies/delete/5
         [HttpDelete("delete/{uuid}")]
         public async Task Delete(Guid uuid)
         {
-            await mechTagMechService.DeleteTagMechanismReactionAsync(uuid);
+            await tagMechSpeciesList.DeleteTagMechanismSpeciesAsync(uuid);
         }
     }
 }

@@ -33,6 +33,13 @@ namespace Chemistry_Cafe_API.Controllers
             return await mechanismService.GetMechanismAsync(uuid);
         }
 
+        // GET api/Mechanism/Family/5
+        [HttpGet("Family/{family_uuid}")]
+        public async Task<Mechanism?> GetFamilyMech(Guid family_uuid)
+        {
+            return await mechanismService.GetFamilyMechanismsAsync(family_uuid);
+        }
+
         // POST api/Mechanism/create
         [HttpPost("create")]
         public async Task Create([FromBody] string name)
