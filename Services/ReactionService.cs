@@ -2,6 +2,7 @@
 using System.Data.Common;
 using MySqlConnector;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 
 namespace Chemistry_Cafe_API.Services
@@ -24,6 +25,18 @@ namespace Chemistry_Cafe_API.Services
 
             command.CommandText = @"SELECT * FROM Reaction WHERE uuid = @id";
             command.Parameters.AddWithValue("@id", uuid);
+
+            var result = await ReadAllAsync(await command.ExecuteReaderAsync());
+            return result.FirstOrDefault();
+        }
+
+        public async Task<Reaction?> GetTags(Guid tag_mechanism_uuid)
+        {
+            using var connection = await database.OpenConnectionAsync();
+            using var command = connection.CreateCommand();
+
+            command.CommandText = @"SELECT Reaction.uuid, Reaction.type, Reaction.isDel FROM TagMechanism_Reaction_List LEFT JOIN Reaction ON reaction_uuid = Reaction.uuid WHERE tag_mechanism_uuid = @tag_mechanism_uuid";
+            command.Parameters.AddWithValue("@tag_mechanism_uuid", tag_mechanism_uuid);
 
             var result = await ReadAllAsync(await command.ExecuteReaderAsync());
             return result.FirstOrDefault();

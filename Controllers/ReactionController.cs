@@ -33,6 +33,13 @@ namespace Chemistry_Cafe_API.Controllers
             return await reactionService.GetReactionAsync(uuid);
         }
 
+        // GET api/Reaction/TagMechanism/5
+        [HttpGet("TagMechanism/{tag_mechanism_uuid}")]
+        public async Task<Reaction?> GetTags(Guid tag_mechanism_uuid)
+        {
+            return await reactionService.GetReactionAsync(tag_mechanism_uuid);
+        }
+
         // POST api/Reaction/create
         [HttpPost("create")]
         public async Task Create([FromBody] string type)

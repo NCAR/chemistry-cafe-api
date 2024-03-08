@@ -11,47 +11,53 @@ namespace Chemistry_Cafe_API.Controllers
     [ApiController]
     public class TagMechanismController : ControllerBase
     {
-        private TagMechanismService tagTagMechanismService;
+        private TagMechanismService tagMechanismService;
 
         //Injects sql data source setup in Program.cs
         public TagMechanismController([FromServices] MySqlDataSource db)
         {
-            this.tagTagMechanismService = new TagMechanismService(db);
+            this.tagMechanismService = new TagMechanismService(db);
         }
 
         // GET: api/TagMechanism/all
         [HttpGet("all")]
         public async Task<IReadOnlyList<TagMechanism>> Get()
         {
-            return await tagTagMechanismService.GetTagMechanismsAsync();
+            return await tagMechanismService.GetTagMechanismsAsync();
         }
 
         // GET api/TagMechanism/5
         [HttpGet("{uuid}")]
         public async Task<TagMechanism?> Get(Guid uuid)
         {
-            return await tagTagMechanismService.GetTagMechanismAsync(uuid);
+            return await tagMechanismService.GetTagMechanismAsync(uuid);
+        }
+
+        [HttpGet("Mechanism/{mechanism_uuid}")]
+        public async Task<TagMechanism?> GetTags(Guid mechanism_uuid)
+        {
+            return await tagMechanismService.GetTagsAsync(mechanism_uuid);
         }
 
         // POST api/TagMechanism/create
         [HttpPost("create")]
         public async Task Create([FromBody] string tag)
         {
-            await tagTagMechanismService.CreateTagMechanismAsync(tag);
+            await tagMechanismService.CreateTagMechanismAsync(tag);
         }
 
         // PUT api/TagMechanism/5
         [HttpPut("update")]
         public async Task Put([FromBody] TagMechanism tagMechanism)
         {
-            await tagTagMechanismService.UpdateTagMechanismAsync(tagMechanism);
+            await tagMechanismService.UpdateTagMechanismAsync(tagMechanism);
         }
 
         // DELETE api/TagMechanism/delete/5
         [HttpDelete("delete/{uuid}")]
         public async Task Delete(Guid uuid)
         {
-            await tagTagMechanismService.DeleteTagMechanismAsync(uuid);
+            await tagMechanismService.DeleteTagMechanismAsync(uuid);
         }
     }
 }
