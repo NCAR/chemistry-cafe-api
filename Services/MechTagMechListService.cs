@@ -12,7 +12,7 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = "SELECT * FROM Mechanism_TagMechanism";
+            command.CommandText = "SELECT * FROM Mechanism_TagMechanism_List";
             return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
 
@@ -21,7 +21,7 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"SELECT * FROM Mechanism_TagMechanism WHERE uuid = @id";
+            command.CommandText = @"SELECT * FROM Mechanism_TagMechanism_List WHERE uuid = @id";
             command.Parameters.AddWithValue("@id", uuid);
 
             var result = await ReadAllAsync(await command.ExecuteReaderAsync());
@@ -35,7 +35,7 @@ namespace Chemistry_Cafe_API.Services
 
             Guid mechTagMechID = Guid.NewGuid();
 
-            command.CommandText = @"INSERT INTO Mechanism_TagMechanism (uuid, mechanism_uuid, tag_mechanism_uuid, version) VALUES (@uuid, @mechanism_uuid, @tag_mechanism_uuid, @version);";
+            command.CommandText = @"INSERT INTO Mechanism_TagMechanism_List (uuid, mechanism_uuid, tag_mechanism_uuid, version) VALUES (@uuid, @mechanism_uuid, @tag_mechanism_uuid, @version);";
 
             command.Parameters.AddWithValue("@uuid", mechTagMechID);
             command.Parameters.AddWithValue("@mechanism_uuid", newMechTagMech.mechanism_uuid);
@@ -49,7 +49,7 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Mechanism_TagMechanism SET mechanism_uuid = @mechanism_uuid, tag_mechanism_uuid = @tag_mechanism_uuid, version = @version, isDel = @isDel WHERE uuid = @uuid;";
+            command.CommandText = @"UPDATE Mechanism_TagMechanism_List SET mechanism_uuid = @mechanism_uuid, tag_mechanism_uuid = @tag_mechanism_uuid, version = @version, isDel = @isDel WHERE uuid = @uuid;";
             
             command.Parameters.AddWithValue("@uuid", mechTagMech.uuid);
             command.Parameters.AddWithValue("@mechanism_uuid", mechTagMech.mechanism_uuid);
@@ -65,7 +65,7 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Mechanism_TagMechanism SET isDel = 1 WHERE uuid = @uuid;";
+            command.CommandText = @"UPDATE Mechanism_TagMechanism_List SET isDel = 1 WHERE uuid = @uuid;";
 
             command.Parameters.AddWithValue("@uuid", uuid);
             
