@@ -23,19 +23,27 @@ namespace Chemistry_Cafe_API.Controllers
         [HttpGet("all")]
         public async Task<IReadOnlyList<Mechanism>> Get()
         {
-            return await mechanismService.GetFamiliesAsync();
+            return await mechanismService.GetMechanismsAsync();
         }
 
         // GET api/Mechanism/5
         [HttpGet("{uuid}")]
-        public async Task<Mechanism?> GetMechanismAsync(Guid uuid)
+        public async Task<Mechanism?> Get(Guid uuid)
         {
             return await mechanismService.GetMechanismAsync(uuid);
         }
 
+        // GET api/Mechanism/Family/5
+        // Returns the mechanisms for the given family uuid
+        [HttpGet("Family/{family_uuid}")]
+        public async Task<Mechanism?> GetFamilyMech(Guid family_uuid)
+        {
+            return await mechanismService.GetFamilyMechanismsAsync(family_uuid);
+        }
+
         // POST api/Mechanism/create
         [HttpPost("create")]
-        public async Task CreateMechanism([FromBody] string name)
+        public async Task Create([FromBody] string name)
         {
             await mechanismService.CreateMechanismAsync(name);
         }

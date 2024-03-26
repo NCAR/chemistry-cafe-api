@@ -4,101 +4,100 @@ using MySqlConnector;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
-
 namespace Chemistry_Cafe_API.Services
 {
-    public class ReactionService(MySqlDataSource database)
+    public class TagMechanismService(MySqlDataSource database)
     {
-        public async Task<IReadOnlyList<Reaction>> GetReactionsAsync()
+        public async Task<IReadOnlyList<TagMechanism>> GetTagMechanismsAsync()
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = "SELECT * FROM Reaction";
+            command.CommandText = "SELECT * FROM TagMechanism";
             return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
 
-        public async Task<Reaction?> GetReactionAsync(Guid uuid)
+        public async Task<TagMechanism?> GetTagMechanismAsync(Guid uuid)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"SELECT * FROM Reaction WHERE uuid = @id";
+            command.CommandText = @"SELECT * FROM TagMechanism WHERE uuid = @id";
             command.Parameters.AddWithValue("@id", uuid);
 
             var result = await ReadAllAsync(await command.ExecuteReaderAsync());
             return result.FirstOrDefault();
         }
 
-        public async Task<Reaction?> GetTags(Guid tag_mechanism_uuid)
+        public async Task<TagMechanism?> GetTagsAsync(Guid mechanism_uuid)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"SELECT Reaction.uuid, Reaction.type, Reaction.isDel FROM TagMechanism_Reaction_List LEFT JOIN Reaction ON reaction_uuid = Reaction.uuid WHERE tag_mechanism_uuid = @tag_mechanism_uuid";
-            command.Parameters.AddWithValue("@tag_mechanism_uuid", tag_mechanism_uuid);
+            command.CommandText = @"SELECT TagMechanism.uuid, TagMechanism.tag, TagMechanism.isDel FROM Mechanism_TagMechanism_List LEFT JOIN TagMechanism ON mechanism_uuid = TagMechanism.uuid WHERE mechanism_uuid = @mechanism_uuid";
+            command.Parameters.AddWithValue("@mechanism_uuid", mechanism_uuid);
 
             var result = await ReadAllAsync(await command.ExecuteReaderAsync());
             return result.FirstOrDefault();
         }
 
-        public async Task CreateReactionAsync(string type)
+        public async Task CreateTagMechanismAsync(string tag)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            Guid reactionID = Guid.NewGuid();
+            Guid tagMechanismID = Guid.NewGuid();
 
-            command.CommandText = @"INSERT INTO Reaction (uuid, type) VALUES (@uuid, @type);";
+            command.CommandText = @"INSERT INTO TagMechanism (uuid, tag) VALUES (@uuid, @tag);";
 
-            command.Parameters.AddWithValue("@uuid", reactionID);
-            command.Parameters.AddWithValue("@type", type);
+            command.Parameters.AddWithValue("@uuid", tagMechanismID);
+            command.Parameters.AddWithValue("@tag", tag);
 
             await command.ExecuteNonQueryAsync();
         }
-        public async Task UpdateReactionAsync(Reaction reaction)
+        public async Task UpdateTagMechanismAsync(TagMechanism tagMechanism)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Reaction SET type = @type, isDel = @isDel WHERE uuid = @uuid;";
+            command.CommandText = @"UPDATE TagMechanism SET tag = @tag, isDel = @isDel WHERE uuid = @uuid;";
 
-            command.Parameters.AddWithValue("@uuid", reaction.uuid);
-            command.Parameters.AddWithValue("@type", reaction.type);
-            command.Parameters.AddWithValue("@isDel", reaction.isDel);
+            command.Parameters.AddWithValue("@uuid", tagMechanism.uuid);
+            command.Parameters.AddWithValue("@tag", tagMechanism.tag);
+            command.Parameters.AddWithValue("@isDel", tagMechanism.isDel);
 
             await command.ExecuteNonQueryAsync();
         }
 
-        public async Task DeleteReactionAsync(Guid uuid)
+        public async Task DeleteTagMechanismAsync(Guid uuid)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Reaction SET isDel = 1 WHERE uuid = @uuid;";
+            command.CommandText = @"UPDATE TagMechanism SET isDel = 1 WHERE uuid = @uuid;";
 
             command.Parameters.AddWithValue("@uuid", uuid);
 
             await command.ExecuteNonQueryAsync();
         }
 
-        private async Task<IReadOnlyList<Reaction>> ReadAllAsync(DbDataReader reader)
+        private async Task<IReadOnlyList<TagMechanism>> ReadAllAsync(DbDataReader reader)
         {
-            var reactions = new List<Reaction>();
+            var tagMechanisms = new List<TagMechanism>();
             using (reader)
             {
                 while (await reader.ReadAsync())
                 {
-                    var reaction = new Reaction
+                    var tagMechanism = new TagMechanism
                     {
                         uuid = reader.GetGuid(0),
-                        type = reader.GetString(1),
+                        tag = reader.GetString(1),
                         isDel = reader.GetBoolean(2),
                     };
-                    reactions.Add(reaction);
+                    tagMechanisms.Add(tagMechanism);
                 }
             }
-            return reactions;
+            return tagMechanisms;
         }
     }
 }

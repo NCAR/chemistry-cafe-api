@@ -7,7 +7,7 @@ namespace Chemistry_Cafe_API.Services
 {
     public class FamilyMechListService (MySqlDataSource database)
     {
-        public async Task<IReadOnlyList<FamilyMechList>> GetFamiliesAsync()
+        public async Task<IReadOnlyList<FamilyMechList>> GetFamilyMechListsAsync()
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();

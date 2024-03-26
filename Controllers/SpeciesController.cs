@@ -26,16 +26,23 @@ namespace Chemistry_Cafe_API.Controllers
             return await speciesService.GetSpeciesAsync();
         }
 
+        // GET api/Species/TagMechanism/5
+        [HttpGet("TagMechanism/{tag_mechanism_uuid}")]
+        public async Task<Species?> GetTags(Guid tag_mechanism_uuid)
+        {
+            return await speciesService.GetTags(tag_mechanism_uuid);
+        }
+
         // GET api/Species/5
         [HttpGet("{uuid}")]
-        public async Task<Species?> GetSpeciesAsync(Guid uuid)
+        public async Task<Species?> Get(Guid uuid)
         {
             return await speciesService.GetSpeciesAsync(uuid);
         }
 
         // POST api/Species/create
         [HttpPost("create")]
-        public async Task CreateSpecies([FromBody] string type)
+        public async Task Create([FromBody] string type)
         {
             await speciesService.CreateSpeciesAsync(type);
         }
