@@ -42,17 +42,19 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
-        public async Task CreateReactionAsync(string type)
+        public async Task CreateReactionAsync(Reaction reaction)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
             Guid reactionID = Guid.NewGuid();
 
-            command.CommandText = @"INSERT INTO Reaction (uuid, type) VALUES (@uuid, @type);";
+            command.CommandText = @"INSERT INTO Reaction (uuid, type, reactant_list_uuid, product_list_uuid) VALUES (@uuid, @type, @reactant_list_uuid, product_list_uuid);";
 
             command.Parameters.AddWithValue("@uuid", reactionID);
-            command.Parameters.AddWithValue("@type", type);
+            command.Parameters.AddWithValue("@type", reaction.type);
+            command.Parameters.AddWithValue("@reactant_list_uuid", reaction.reactant_list_uuid);
+            command.Parameters.AddWithValue("@product_list_uuid", reaction.product_list_uuid);
 
             await command.ExecuteNonQueryAsync();
         }
@@ -61,11 +63,13 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Reaction SET type = @type, isDel = @isDel WHERE uuid = @uuid;";
+            command.CommandText = @"UPDATE Reaction SET type = @type, isDel = @isDel, reactant_list_uuid = @reactant_list_uuid, product_list_uuid = @product_list_uuid WHERE uuid = @uuid;";
 
             command.Parameters.AddWithValue("@uuid", reaction.uuid);
             command.Parameters.AddWithValue("@type", reaction.type);
             command.Parameters.AddWithValue("@isDel", reaction.isDel);
+            command.Parameters.AddWithValue("@reactant_list_uuid", reaction.reactant_list_uuid);
+            command.Parameters.AddWithValue("@product_list_uuid", reaction.product_list_uuid);
 
             await command.ExecuteNonQueryAsync();
         }
@@ -94,6 +98,8 @@ namespace Chemistry_Cafe_API.Services
                         uuid = reader.GetGuid(0),
                         type = reader.GetString(1),
                         isDel = reader.GetBoolean(2),
+                        reactant_list_uuid = reader.GetGuid(3),
+                        product_list_uuid = reader.GetGuid(4)
                     };
                     reactions.Add(reaction);
                 }

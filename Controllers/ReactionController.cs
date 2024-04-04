@@ -42,9 +42,9 @@ namespace Chemistry_Cafe_API.Controllers
 
         // POST api/Reaction/create
         [HttpPost("create")]
-        public async Task Create([FromBody] string type)
+        public async Task Create([FromBody] Reaction reaction)
         {
-            await reactionService.CreateReactionAsync(type);
+            await reactionService.CreateReactionAsync(reaction);
         }
 
         // PUT api/Reaction/5
