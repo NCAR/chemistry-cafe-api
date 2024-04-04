@@ -28,7 +28,7 @@ namespace Chemistry_Cafe_API.Controllers
 
         // GET api/Species/TagMechanism/5
         [HttpGet("TagMechanism/{tag_mechanism_uuid}")]
-        public async Task<Species?> GetTags(Guid tag_mechanism_uuid)
+        public async Task<IReadOnlyList<Species>> GetTags(Guid tag_mechanism_uuid)
         {
             return await speciesService.GetTags(tag_mechanism_uuid);
         }

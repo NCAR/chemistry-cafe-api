@@ -29,7 +29,7 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
-        public async Task<Species?> GetTags(Guid tag_mechanism_uuid)
+        public async Task<IReadOnlyList<Species>> GetTags(Guid tag_mechanism_uuid)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -37,8 +37,7 @@ namespace Chemistry_Cafe_API.Services
             command.CommandText = @"SELECT Species.uuid, Species.type, Species.isDel FROM TagMechanism_Species_List LEFT JOIN Species ON species_uuid = Species.uuid WHERE tag_mechanism_uuid = @tag_mechanism_uuid";
             command.Parameters.AddWithValue("@tag_mechanism_uuid", tag_mechanism_uuid);
 
-            var result = await ReadAllAsync(await command.ExecuteReaderAsync());
-            return result.FirstOrDefault();
+            return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
 
         public async Task CreateSpeciesAsync(string type)
