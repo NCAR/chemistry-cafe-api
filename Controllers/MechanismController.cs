@@ -36,7 +36,7 @@ namespace Chemistry_Cafe_API.Controllers
         // GET api/Mechanism/Family/5
         // Returns the mechanisms for the given family uuid
         [HttpGet("Family/{family_uuid}")]
-        public async Task<Mechanism?> GetFamilyMech(Guid family_uuid)
+        public async Task<IReadOnlyList<Mechanism>> GetFamilyMech(Guid family_uuid)
         {
             return await mechanismService.GetFamilyMechanismsAsync(family_uuid);
         }

@@ -28,7 +28,7 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
-        public async Task<Mechanism?> GetFamilyMechanismsAsync(Guid family_uuid)
+        public async Task<IReadOnlyList<Mechanism>> GetFamilyMechanismsAsync(Guid family_uuid)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -37,7 +37,7 @@ namespace Chemistry_Cafe_API.Services
             command.Parameters.AddWithValue("@id", family_uuid);
 
             var result = await ReadAllAsync(await command.ExecuteReaderAsync());
-            return result.FirstOrDefault();
+            return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
 
         public async Task<Guid> CreateMechanismAsync(string name)
