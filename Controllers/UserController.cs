@@ -35,9 +35,9 @@ namespace Chemistry_Cafe_API.Controllers
 
         // POST api/User/create
         [HttpPost("create")]
-        public async Task Create([FromBody] string log_in_info)
+        public async Task<Guid> Create([FromBody] string log_in_info)
         {
-            await userService.CreateUserAsync(log_in_info);
+            return await userService.CreateUserAsync(log_in_info);
         }
 
         // PUT api/User/5

@@ -41,9 +41,9 @@ namespace Chemistry_Cafe_API.Controllers
 
         // POST api/TagMechanism/create
         [HttpPost("create")]
-        public async Task Create([FromBody] string tag)
+        public async Task<Guid> Create([FromBody] string tag)
         {
-            await tagMechanismService.CreateTagMechanismAsync(tag);
+            return await tagMechanismService.CreateTagMechanismAsync(tag);
         }
 
         // PUT api/TagMechanism/5

@@ -42,7 +42,7 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
-        public async Task CreateReactionAsync(string type)
+        public async Task<Guid> CreateReactionAsync(string type)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -55,6 +55,8 @@ namespace Chemistry_Cafe_API.Services
             command.Parameters.AddWithValue("@type", type);
 
             await command.ExecuteNonQueryAsync();
+
+            return reactionID;
         }
         public async Task UpdateReactionAsync(Reaction reaction)
         {

@@ -35,9 +35,9 @@ namespace Chemistry_Cafe_API.Controllers
 
         // POST api/PropertyVersion/create
         [HttpPost("create")]
-        public async Task Create([FromBody] PropertyVersion newPropertyVersion)
+        public async Task<Guid> Create([FromBody] PropertyVersion newPropertyVersion)
         {
-            await propertyVersionService.CreatePropertyVersionAsync(newPropertyVersion);
+            return await propertyVersionService.CreatePropertyVersionAsync(newPropertyVersion);
         }
 
         // PUT api/PropertyVersion/5

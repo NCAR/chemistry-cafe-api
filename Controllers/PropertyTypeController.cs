@@ -35,9 +35,9 @@ namespace Chemistry_Cafe_API.Controllers
 
         // POST api/PropertyType/create
         [HttpPost("create")]
-        public async Task Create([FromBody] PropertyType propertyType)
+        public async Task<Guid> Create([FromBody] PropertyType propertyType)
         {
-            await propertyTypeService.CreatePropertyTypeAsync(propertyType);
+            return await propertyTypeService.CreatePropertyTypeAsync(propertyType);
         }
 
         // PUT api/PropertyType/5

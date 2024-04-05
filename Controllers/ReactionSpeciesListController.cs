@@ -35,9 +35,9 @@ namespace Chemistry_Cafe_API.Controllers
 
         // POST api/ReactionSpeciesList/create
         [HttpPost("create")]
-        public async Task Create([FromBody] ReactionSpeciesList newReactionSpeciesList)
+        public async Task<Guid> Create([FromBody] ReactionSpeciesList newReactionSpeciesList)
         {
-            await reactionSpeciesListService.CreateReactionSpeciesListAsync(newReactionSpeciesList);
+            return await reactionSpeciesListService.CreateReactionSpeciesListAsync(newReactionSpeciesList);
         }
 
         // PUT api/ReactionSpeciesList/5

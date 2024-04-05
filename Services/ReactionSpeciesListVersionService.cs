@@ -28,7 +28,7 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
-        public async Task CreateReactionSpeciesListVersionAsync(ReactionSpeciesListVersion newReactionSpeciesListVersion)
+        public async Task<Guid> CreateReactionSpeciesListVersionAsync(ReactionSpeciesListVersion newReactionSpeciesListVersion)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -46,6 +46,8 @@ namespace Chemistry_Cafe_API.Services
             command.Parameters.AddWithValue("@datetime", newReactionSpeciesListVersion.datetime);
 
             await command.ExecuteNonQueryAsync();
+
+            return reactionSpeciesListVersionID;
         }
         public async Task UpdateReactionSpeciesListVersionAsync(ReactionSpeciesListVersion reactionSpeciesListVersion)
         {

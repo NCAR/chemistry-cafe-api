@@ -29,7 +29,7 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
-        public async Task CreateFamilyAsync(string name)
+        public async Task<Guid> CreateFamilyAsync(string name)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -42,6 +42,8 @@ namespace Chemistry_Cafe_API.Services
             command.Parameters.AddWithValue("@name", name);
 
             await command.ExecuteNonQueryAsync();
+
+            return familyID;
         }
         public async Task UpdateFamilyAsync(Family family)
         {

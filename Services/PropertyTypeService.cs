@@ -29,7 +29,7 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
-        public async Task CreatePropertyTypeAsync(PropertyType propertyType)
+        public async Task<Guid> CreatePropertyTypeAsync(PropertyType propertyType)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -44,6 +44,8 @@ namespace Chemistry_Cafe_API.Services
             command.Parameters.AddWithValue("@validation", propertyType.validation);
 
             await command.ExecuteNonQueryAsync();
+
+            return propertytypeID;
         }
         public async Task UpdatePropertyTypeAsync(PropertyType propertyType)
         {

@@ -35,9 +35,9 @@ namespace Chemistry_Cafe_API.Controllers
 
         // POST api/FamilyMechList/create
         [HttpPost("create")]
-        public async Task Create([FromBody] FamilyMechList newFamilyMechList)
+        public async Task<Guid> Create([FromBody] FamilyMechList newFamilyMechList)
         {
-            await familyMechListService.CreateFamilyMechListAsync(newFamilyMechList);
+            return await familyMechListService.CreateFamilyMechListAsync(newFamilyMechList);
         }
 
         // PUT api/FamilyMechList/5

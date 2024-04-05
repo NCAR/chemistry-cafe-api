@@ -35,9 +35,9 @@ namespace Chemistry_Cafe_API.Controllers
 
         // POST api/TagMechanismSpeciesListVersion/create
         [HttpPost("create")]
-        public async Task Create([FromBody] TagMechanismSpeciesListVersion newTagMechanismSpeciesListVersion)
+        public async Task<Guid> Create([FromBody] TagMechanismSpeciesListVersion newTagMechanismSpeciesListVersion)
         {
-            await tagMechanismSpeciesListVersionService.CreateTagMechanismSpeciesListVersionAsync(newTagMechanismSpeciesListVersion);
+            return await tagMechanismSpeciesListVersionService.CreateTagMechanismSpeciesListVersionAsync(newTagMechanismSpeciesListVersion);
         }
 
         // PUT api/TagMechanismSpeciesListVersion/5

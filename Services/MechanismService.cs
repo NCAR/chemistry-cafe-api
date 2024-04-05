@@ -40,7 +40,7 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
-        public async Task CreateMechanismAsync(string name)
+        public async Task<Guid> CreateMechanismAsync(string name)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -53,6 +53,8 @@ namespace Chemistry_Cafe_API.Services
             command.Parameters.AddWithValue("@name", name);
 
             await command.ExecuteNonQueryAsync();
+
+            return mechanismID;
         }
         public async Task UpdateMechanismAsync(Mechanism mechanism)
         {

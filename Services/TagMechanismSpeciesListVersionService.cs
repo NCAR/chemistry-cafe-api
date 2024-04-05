@@ -28,7 +28,7 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
-        public async Task CreateTagMechanismSpeciesListVersionAsync(TagMechanismSpeciesListVersion newTagMechanismSpeciesListVersion)
+        public async Task<Guid> CreateTagMechanismSpeciesListVersionAsync(TagMechanismSpeciesListVersion newTagMechanismSpeciesListVersion)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -46,6 +46,8 @@ namespace Chemistry_Cafe_API.Services
             command.Parameters.AddWithValue("@datetime", newTagMechanismSpeciesListVersion.datetime);
 
             await command.ExecuteNonQueryAsync();
+
+            return tagMechanismSpeciesListVersionID;
         }
         public async Task UpdateTagMechanismSpeciesListVersionAsync(TagMechanismSpeciesListVersion tagMechanismSpeciesListVersion)
         {
