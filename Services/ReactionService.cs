@@ -42,7 +42,7 @@ namespace Chemistry_Cafe_API.Services
         }
 
 
-        public async Task<Guid> CreateReactionAsync(string type)
+        public async Task<Guid> CreateReactionAsync(Reaction reaction)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
