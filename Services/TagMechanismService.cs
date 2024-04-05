@@ -41,7 +41,7 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
-        public async Task CreateTagMechanismAsync(string tag)
+        public async Task<Guid> CreateTagMechanismAsync(string tag)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -54,6 +54,8 @@ namespace Chemistry_Cafe_API.Services
             command.Parameters.AddWithValue("@tag", tag);
 
             await command.ExecuteNonQueryAsync();
+
+            return tagMechanismID;
         }
         public async Task UpdateTagMechanismAsync(TagMechanism tagMechanism)
         {

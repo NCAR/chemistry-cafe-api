@@ -35,9 +35,9 @@ namespace Chemistry_Cafe_API.Controllers
 
         // POST api/UserPreferences/create
         [HttpPost("create")]
-        public async Task Create([FromBody] UserPreferences userPreferneces)
+        public async Task<Guid> Create([FromBody] UserPreferences userPreferneces)
         {
-            await userpreferencesService.CreateUserPreferencesAsync(userPreferneces);
+            return await userpreferencesService.CreateUserPreferencesAsync(userPreferneces);
         }
 
         // PUT api/UserPreferences/5

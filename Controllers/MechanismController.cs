@@ -43,9 +43,9 @@ namespace Chemistry_Cafe_API.Controllers
 
         // POST api/Mechanism/create
         [HttpPost("create")]
-        public async Task Create([FromBody] string name)
+        public async Task<Guid> Create([FromBody] string name)
         {
-            await mechanismService.CreateMechanismAsync(name);
+            return await mechanismService.CreateMechanismAsync(name);
         }
 
         // PUT api/Mechanism/5

@@ -35,9 +35,9 @@ namespace Chemistry_Cafe_API.Controllers
 
         // POST api/PropertyList/create
         [HttpPost("create")]
-        public async Task Create([FromBody] PropertyList userPreferneces)
+        public async Task<Guid> Create([FromBody] PropertyList userPreferneces)
         {
-            await userpreferencesService.CreatePropertyListAsync(userPreferneces);
+            return await userpreferencesService.CreatePropertyListAsync(userPreferneces);
         }
 
         // PUT api/PropertyList/5
