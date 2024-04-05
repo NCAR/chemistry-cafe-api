@@ -28,7 +28,7 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
-        public async Task CreatePropertyVersionAsync(PropertyVersion newPropertyVersion)
+        public async Task<Guid> CreatePropertyVersionAsync(PropertyVersion newPropertyVersion)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -53,6 +53,8 @@ namespace Chemistry_Cafe_API.Services
             command.Parameters.AddWithValue("@datetime", newPropertyVersion.datetime);
 
             await command.ExecuteNonQueryAsync();
+
+            return propertyVersionID;
         }
         public async Task UpdatePropertyVersionAsync(PropertyVersion propertyVersion)
         {

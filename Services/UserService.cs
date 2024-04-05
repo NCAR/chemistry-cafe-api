@@ -29,7 +29,7 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
-        public async Task CreateUserAsync(string log_in_info)
+        public async Task<Guid> CreateUserAsync(string log_in_info)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -42,6 +42,8 @@ namespace Chemistry_Cafe_API.Services
             command.Parameters.AddWithValue("@log_in_info", log_in_info);
 
             await command.ExecuteNonQueryAsync();
+
+            return userID;
         }
         public async Task UpdateUserAsync(User user)
         {

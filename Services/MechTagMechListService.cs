@@ -28,7 +28,7 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
-        public async Task CreateMechTagMechAsync(MechTagMechList newMechTagMech)
+        public async Task<Guid> CreateMechTagMechAsync(MechTagMechList newMechTagMech)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -43,6 +43,8 @@ namespace Chemistry_Cafe_API.Services
             command.Parameters.AddWithValue("@version", newMechTagMech.version);
 
             await command.ExecuteNonQueryAsync();
+
+            return mechTagMechID;
         }
         public async Task UpdateMechTagMechAsync(MechTagMechList mechTagMech)
         {

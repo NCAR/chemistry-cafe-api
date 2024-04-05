@@ -29,7 +29,7 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
-        public async Task CreatePropertyListAsync(PropertyList userPreferences)
+        public async Task<Guid> CreatePropertyListAsync(PropertyList userPreferences)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -43,6 +43,8 @@ namespace Chemistry_Cafe_API.Services
             command.Parameters.AddWithValue("@version", userPreferences.version);
 
             await command.ExecuteNonQueryAsync();
+
+            return userPreferencesID;
         }
         public async Task UpdatePropertyListAsync(PropertyList userPreferences)
         {

@@ -40,7 +40,7 @@ namespace Chemistry_Cafe_API.Services
             return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
 
-        public async Task CreateSpeciesAsync(string type)
+        public async Task<Guid> CreateSpeciesAsync(string type)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -53,6 +53,8 @@ namespace Chemistry_Cafe_API.Services
             command.Parameters.AddWithValue("@type", type);
 
             await command.ExecuteNonQueryAsync();
+
+            return speciesID;
         }
         public async Task UpdateSpeciesAsync(Species species)
         {

@@ -41,7 +41,8 @@ namespace Chemistry_Cafe_API.Services
             return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
 
-        public async Task CreateReactionAsync(Reaction reaction)
+
+        public async Task<Guid> CreateReactionAsync(string type)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -56,6 +57,8 @@ namespace Chemistry_Cafe_API.Services
             command.Parameters.AddWithValue("@product_list_uuid", reaction.product_list_uuid);
 
             await command.ExecuteNonQueryAsync();
+
+            return reactionID;
         }
         public async Task UpdateReactionAsync(Reaction reaction)
         {

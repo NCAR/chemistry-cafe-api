@@ -35,9 +35,9 @@ namespace Chemistry_Cafe_API.Controllers
 
         // POST api/MechTagMech/create
         [HttpPost("create")]
-        public async Task Create([FromBody] MechTagMechList newMechTagMech)
+        public async Task<Guid> Create([FromBody] MechTagMechList newMechTagMech)
         {
-            await mechTagMechService.CreateMechTagMechAsync(newMechTagMech);
+            return await mechTagMechService.CreateMechTagMechAsync(newMechTagMech);
         }
 
         // PUT api/MechTagMech/5

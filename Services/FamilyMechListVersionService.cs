@@ -28,7 +28,7 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
-        public async Task CreateFamilyMechListVersionAsync(FamilyMechListVersion newFamilyMechListVersion)
+        public async Task<Guid> CreateFamilyMechListVersionAsync(FamilyMechListVersion newFamilyMechListVersion)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -46,6 +46,8 @@ namespace Chemistry_Cafe_API.Services
             command.Parameters.AddWithValue("@datetime", newFamilyMechListVersion.datetime);
 
             await command.ExecuteNonQueryAsync();
+
+            return familyMechListVersionID;
         }
         public async Task UpdateFamilyMechListVersionAsync(FamilyMechListVersion familyMechListVersion)
         {

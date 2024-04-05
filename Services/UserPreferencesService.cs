@@ -29,7 +29,7 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
-        public async Task CreateUserPreferencesAsync(UserPreferences userPreferences)
+        public async Task<Guid> CreateUserPreferencesAsync(UserPreferences userPreferences)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
@@ -43,6 +43,8 @@ namespace Chemistry_Cafe_API.Services
             command.Parameters.AddWithValue("@preferences", userPreferences.preferences);
 
             await command.ExecuteNonQueryAsync();
+
+            return userPreferencesID;
         }
         public async Task UpdateUserPreferencesAsync(UserPreferences userPreferences)
         {
