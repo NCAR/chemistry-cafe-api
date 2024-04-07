@@ -2,6 +2,7 @@
 using System.Data.Common;
 using MySqlConnector;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 
 namespace Chemistry_Cafe_API.Services
@@ -27,6 +28,26 @@ namespace Chemistry_Cafe_API.Services
 
             var result = await ReadAllAsync(await command.ExecuteReaderAsync());
             return result.FirstOrDefault();
+        }
+
+        public async Task<IReadOnlyList<ReactantProductList>> GetReactantsAsync(Guid reaction_reactant_list_uuid)
+        {
+            using var connection = await database.OpenConnectionAsync();
+            using var command = connection.CreateCommand();
+
+            command.CommandText = "SELECT * FROM Reactant_Product_List WHERE reactant_product_uuid = @reaction_reactant_list_uuid";
+            command.Parameters.AddWithValue("@reaction_reactant_list_uuid", reaction_reactant_list_uuid);
+            return await ReadAllAsync(await command.ExecuteReaderAsync());
+        }
+
+        public async Task<IReadOnlyList<ReactantProductList>> GetProductsAsync(Guid reaction_product_list_uuid)
+        {
+            using var connection = await database.OpenConnectionAsync();
+            using var command = connection.CreateCommand();
+
+            command.CommandText = "SELECT * FROM Reactant_Product_List WHERE reactant_product_uuid = @reaction_product_list_uuid";
+            command.Parameters.AddWithValue("@reaction_product_list_uuid", reaction_product_list_uuid);
+            return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
 
         public async Task CreateReactantProductListAsync(ReactantProductList reactantProduct)

@@ -2,6 +2,7 @@
 using Chemistry_Cafe_API.Services;
 using Microsoft.AspNetCore.Mvc;
 using MySqlConnector;
+using System;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -31,6 +32,20 @@ namespace Chemistry_Cafe_API.Controllers
         public async Task<ReactantProductList?> Get(Guid uuid)
         {
             return await userpreferencesService.GetReactantProductListAsync(uuid);
+        }
+
+        // GET api/ReactantProductList/Reactants/5
+        [HttpGet("Reactants/{reaction_reactant_list_uuid}")]
+        public async Task<IReadOnlyList<ReactantProductList>> GetReactants(Guid reaction_reactant_list_uuid)
+        {
+            return await userpreferencesService.GetReactantsAsync(reaction_reactant_list_uuid);
+        }
+
+        // GET api/ReactantProductList/Products/5
+        [HttpGet("Products/{reaction_product_list_uuid}")]
+        public async Task<IReadOnlyList<ReactantProductList>> GetProducts(Guid reaction_product_list_uuid)
+        {
+            return await userpreferencesService.GetProductsAsync(reaction_product_list_uuid);
         }
 
         // POST api/ReactantProductList/create
