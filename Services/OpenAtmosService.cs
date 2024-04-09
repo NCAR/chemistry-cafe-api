@@ -53,15 +53,16 @@ namespace Chemistry_Cafe_API.Services
                     }
                     else if(property.string_value != null)
                     {
-                        JSON += property.string_value;
+                        JSON += "\"" + property.string_value + "\"";
                     }
 
-                    JSON += " , \n";
+                    JSON += ", \n";
                 }
-                JSON.Remove(JSON.LastIndexOf(','));
+                JSON = JSON.Remove(JSON.LastIndexOf(','));
+                JSON += "\n";
                 JSON += "    }, \n";
             }
-            JSON.Remove(JSON.LastIndexOf(','));
+            JSON = JSON.Remove(JSON.LastIndexOf(','));
 
             JSON += "  ],\n" +
                 "  \"phases\": [ \n" +
@@ -72,7 +73,8 @@ namespace Chemistry_Cafe_API.Services
             {
                 JSON += "        \"" + species.type + "\", \n";
             }
-            JSON.Remove(JSON.LastIndexOf(','));
+            JSON = JSON.Remove(JSON.LastIndexOf(','));
+            JSON += "\n";
             JSON += "      ] \n" +
                 "    } \n" +
                 "  ],\n" +
@@ -111,7 +113,7 @@ namespace Chemistry_Cafe_API.Services
                         JSON += "\"" + property.string_value + "\"";
                     }
 
-                    JSON += " , \n";
+                    JSON += ", \n";
                 }
                 var reactants = reactantProductListService.GetReactantsAsync(reaction.reactant_list_uuid).Result;
                 JSON += "      \"reactants\": [ \n" +
@@ -133,10 +135,11 @@ namespace Chemistry_Cafe_API.Services
                     JSON += "          \"coefficient\": \"" + product.quantity + "\" \n";
                 }
                 JSON += "        }\n" +
-                    "      ], \n";
-                JSON += "    }\n";
+                    "      ]\n";
+                JSON += "    },\n";
             }
-
+            JSON = JSON.Remove(JSON.LastIndexOf(','));
+            JSON += "\n";
             JSON += "  ]\n}";
             return JSON;
         }
