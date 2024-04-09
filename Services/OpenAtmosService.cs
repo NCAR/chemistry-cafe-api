@@ -37,7 +37,15 @@ namespace Chemistry_Cafe_API.Services
                 var properties = propertyListService.GetPropertiesAsync(species.uuid).Result;
                 foreach ( var property in properties )
                 {
-                    JSON += "      \"" + property.name + " " + property.units + "\": ";
+                    JSON += "      \"" + property.name;
+                    if (property.units != null)
+                    {
+                        JSON += " [" + property.units + "]\": ";
+                    }
+                    else
+                    {
+                        JSON += "]\":";
+                    }
 
                     if (property.float_value.HasValue)
                     {
@@ -90,7 +98,7 @@ namespace Chemistry_Cafe_API.Services
                 {
                     if (property.units != null)
                     {
-                        JSON += "      \"" + property.name + " " + property.units + "\": ";
+                        JSON += "      \"" + property.name + " [" + property.units + "]\": ";
                     }
                     else
                     {
