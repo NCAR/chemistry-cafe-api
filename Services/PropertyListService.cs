@@ -124,20 +124,44 @@ namespace Chemistry_Cafe_API.Services
                         frozen_version = reader.GetString(6),
                         mechanism_uuid = reader.GetGuid(7),
                         property_type = reader.GetGuid(8),
-                        float_value = reader.GetFloat(9),
-                        double_value = reader.GetDouble(10),
-                        int_value = reader.GetInt32(11),
-                        string_value = reader.GetString(12),
-                        action = reader.GetString(13),
                         user_uuid = reader.GetGuid(14),
                         datetime = reader.GetDateTime(15),
                         property_version_isDel = reader.GetBoolean(16),
                         property_type_uuid = reader.GetGuid(17),
-                        name = reader.GetString(18),
-                        units = reader.GetString(19),
-                        validation = reader.GetString(20),
                         property_type_isDel = reader.GetBoolean(21)
                     };
+                    if (!reader.IsDBNull(9))
+                    {
+                        property.float_value = reader.GetFloat(9);
+                    }
+                    if (!reader.IsDBNull(10))
+                    {
+                        property.double_value = reader.GetDouble(10);
+                    }
+                    if (!reader.IsDBNull(11))
+                    {
+                        property.int_value = reader.GetInt32(11);
+                    }
+                    if (!reader.IsDBNull(12))
+                    {
+                        property.string_value = reader.GetString(12);
+                    }
+                    if (!reader.IsDBNull(13))
+                    {
+                        property.action = reader.GetString(13);
+                    }
+                    if (!reader.IsDBNull(18))
+                    {
+                        property.name = reader.GetString(18);
+                    }
+                    if (!reader.IsDBNull(19))
+                    {
+                        property.units = reader.GetString(19);
+                    }
+                    if (!reader.IsDBNull(20))
+                    {
+                        property.validation = reader.GetString(20);
+                    }
                     propertyList.Add(property);
                 }
             }

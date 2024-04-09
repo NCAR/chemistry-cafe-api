@@ -108,15 +108,30 @@ namespace Chemistry_Cafe_API.Services
                         frozen_version = reader.GetString(2),
                         mechanism_uuid = reader.GetGuid(3),
                         property_type = reader.GetGuid(4),
-                        float_value = reader.GetFloat(5),
-                        double_value = reader.GetDouble(6),
-                        int_value = reader.GetInt32(7),
-                        string_value = reader.GetString(8),
-                        action = reader.GetString(9),
                         user_uuid = reader.GetGuid(10),
                         datetime = reader.GetDateTime(11),
                         isDel = reader.GetBoolean(12),
                     };
+                    if (!reader.IsDBNull(5))
+                    {
+                        property.float_value = reader.GetFloat(5);
+                    }
+                    if (!reader.IsDBNull(6))
+                    {
+                        property.double_value = reader.GetDouble(6);
+                    }
+                    if (!reader.IsDBNull(7))
+                    {
+                        property.int_value = reader.GetInt32(7);
+                    }
+                    if (!reader.IsDBNull(8))
+                    {
+                        property.string_value = reader.GetString(8);
+                    }
+                    if (!reader.IsDBNull(9))
+                    {
+                        property.action = reader.GetString(9);
+                    }
                     propertyVersion.Add(property);
                 }
             }
