@@ -82,14 +82,15 @@ namespace Chemistry_Cafe_API.Services
             await command.ExecuteNonQueryAsync();
         }
 
-        public async Task DeleteReactantProductListAsync(Guid reactant_product_uuid)
+        public async Task DeleteReactantProductListAsync(DeleteReactantProductList uuids)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"DELETE FROM Reactant_Product_List WHERE reactant_product_uuid = @reactant_product_uuid;";
+            command.CommandText = @"DELETE FROM Reactant_Product_List WHERE reactant_product_uuid = @reactant_product_uuid AND species_uuid = @species_uuid;";
 
-            command.Parameters.AddWithValue("@reactant_product_uuid", uuid);
+            command.Parameters.AddWithValue("@reactant_product_uuid", uuids.reactant_porodct_uuid);
+            command.Parameters.AddWithValue("@species_uuid", uuids.species_uuid);
 
             await command.ExecuteNonQueryAsync();
         }

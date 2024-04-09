@@ -62,9 +62,9 @@ namespace Chemistry_Cafe_API.Controllers
             await userpreferencesService.UpdateReactantProductListAsync(userpreferences);
         }
 
-        // DELETE api/ReactantProductList/delete/5
-        [HttpDelete("delete/{uuid}")]
-        public async Task Delete(Guid uuid)
+        // DELETE api/ReactantProductList/delete  Body [reaction_product_uuid, species_uuid]
+        [HttpDelete("delete")]
+        public async Task Delete([FromBody]DeleteReactantProductList uuid)
         {
             await userpreferencesService.DeleteReactantProductListAsync(uuid);
         }
