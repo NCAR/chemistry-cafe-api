@@ -32,7 +32,7 @@ namespace Chemistry_Cafe_API.Services
 
             foreach ( var species in speciesList )
             {
-                JSON += "    { ";
+                JSON += "    {\n";
                 JSON += "      \"name\": \"" + species.type + "\", \n";
                 var properties = propertyListService.GetPropertiesAsync(species.uuid).Result;
                 foreach ( var property in properties )
@@ -58,8 +58,7 @@ namespace Chemistry_Cafe_API.Services
 
                     JSON += " , \n";
                 }
-                JSON.Remove(JSON.Length - 1);
-                JSON.Remove(JSON.Length - 1);
+                JSON.Remove(JSON.LastIndexOf(','));
                 JSON += "    }, \n";
             }
             JSON.Remove(JSON.LastIndexOf(','));
@@ -109,14 +108,14 @@ namespace Chemistry_Cafe_API.Services
                     }
                     else if (property.string_value != null)
                     {
-                        JSON += property.string_value;
+                        JSON += "\"" + property.string_value + "\"";
                     }
 
                     JSON += " , \n";
                 }
                 var reactants = reactantProductListService.GetReactantsAsync(reaction.uuid).Result;
                 JSON += "      \"reactants\": [ \n" +
-                    "        {";
+                    "        {\n";
                 foreach (ReactantsProducts reactant in reactants)
                 {
                     JSON += "          \"species name\": \"" + reactant.type + "\", \n";
@@ -127,7 +126,7 @@ namespace Chemistry_Cafe_API.Services
 
                 var products = reactantProductListService.GetProductsAsync(reaction.uuid).Result;
                 JSON += "      \"products\": [ \n" +
-                    "        {";
+                    "        {\n";
                 foreach (ReactantsProducts product in products)
                 {
                     JSON += "          \"species name\": \"" + product.type + "\", \n";
