@@ -38,13 +38,13 @@ namespace Chemistry_Cafe_API.Services
                 foreach ( var property in properties )
                 {
                     JSON += "      \"" + property.name;
-                    if (property.units != null)
+                    if (!(property.units == null || property.units == ""))
                     {
                         JSON += " [" + property.units + "]\": ";
                     }
                     else
                     {
-                        JSON += "]\":";
+                        JSON += "\":";
                     }
 
                     if (property.float_value.HasValue)
@@ -96,7 +96,7 @@ namespace Chemistry_Cafe_API.Services
                 var properties = propertyListService.GetPropertiesAsync(reaction.uuid).Result;
                 foreach (var property in properties)
                 {
-                    if (property.units != null)
+                    if (!(property.units == null || property.units == ""))
                     {
                         JSON += "      \"" + property.name + " [" + property.units + "]\": ";
                     }
