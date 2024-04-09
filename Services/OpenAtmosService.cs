@@ -113,7 +113,7 @@ namespace Chemistry_Cafe_API.Services
 
                     JSON += " , \n";
                 }
-                var reactants = reactantProductListService.GetReactantsAsync(reaction.uuid).Result;
+                var reactants = reactantProductListService.GetReactantsAsync(reaction.reactant_list_uuid).Result;
                 JSON += "      \"reactants\": [ \n" +
                     "        {\n";
                 foreach (ReactantsProducts reactant in reactants)
@@ -124,7 +124,7 @@ namespace Chemistry_Cafe_API.Services
                 JSON += "        }\n" +
                     "      ], \n";
 
-                var products = reactantProductListService.GetProductsAsync(reaction.uuid).Result;
+                var products = reactantProductListService.GetProductsAsync(reaction.product_list_uuid).Result;
                 JSON += "      \"products\": [ \n" +
                     "        {\n";
                 foreach (ReactantsProducts product in products)
