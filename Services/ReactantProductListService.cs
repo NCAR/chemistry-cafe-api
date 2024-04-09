@@ -57,11 +57,9 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            Guid reactantProductID = Guid.NewGuid();
+            command.CommandText = @"INSERT INTO Reactant_Product_List (reactant_product_uuid, reaction_uuid, species_uuid, quantity) VALUES (@reactant_product_uuid, @reaction_uuid, @species_uuid, @quantity);";
 
-            command.CommandText = @"INSERT INTO Reactant_Product_List (uuid, reaction_uuid, species_uuid, quantity) VALUES (@uuid, @reaction_uuid, @species_uuid, @quantity);";
-
-            command.Parameters.AddWithValue("@uuid", reactantProductID);
+            command.Parameters.AddWithValue("@reactant_product_uuid", reactantProduct.reactant_product_uuid);
             command.Parameters.AddWithValue("@reaction_uuid", reactantProduct.reaction_uuid);
             command.Parameters.AddWithValue("@species_uuid", reactantProduct.species_uuid);
             command.Parameters.AddWithValue("@quantity", reactantProduct.quantity);
