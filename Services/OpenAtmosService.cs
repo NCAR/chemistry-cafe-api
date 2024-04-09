@@ -88,9 +88,11 @@ namespace Chemistry_Cafe_API.Services
                 "    } \n" +
                 "  ],\n" +
                 "  \"reactions\": [ \n";
+            bool react = false;
 
             foreach (var reaction in reactionList)
             {
+                react = true;
                 JSON += "    { \n";
                 JSON += "      \"type\" : \"" + reaction.type.ToUpper() + "\", \n"; 
                 var properties = propertyListService.GetPropertiesAsync(reaction.uuid).Result;
@@ -161,8 +163,11 @@ namespace Chemistry_Cafe_API.Services
                 
                 JSON += "    },\n";
             }
-            JSON = JSON.Remove(JSON.LastIndexOf(','));
-            JSON += "\n";
+            if (react)
+            {
+                JSON = JSON.Remove(JSON.LastIndexOf(','));
+                JSON += "\n";
+            }
             JSON += "  ]\n}";
             return JSON;
         }
