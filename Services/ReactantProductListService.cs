@@ -30,24 +30,26 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
-        public async Task<IReadOnlyList<ReactantProductList>> GetReactantsAsync(Guid reaction_reactant_list_uuid)
+        public async Task<IReadOnlyList<ReactantsProducts>> GetReactantsAsync(Guid reaction_reactant_list_uuid)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = "SELECT * FROM Reactant_Product_List WHERE reactant_product_uuid = @reaction_reactant_list_uuid";
+            command.CommandText = "SELECT Reactant_Product_List.reactant_product_uuid, Reactant_Product_List.reaction_uuid, Reactant_Product_List.species_uuid, Reactant_Product_List.quantity, Species.type " +
+                "FROM Reactant_Product_List LEFT JOIN Species ON species_uuid = uuid WHERE reactant_product_uuid = @reaction_reactant_list_uuid";
             command.Parameters.AddWithValue("@reaction_reactant_list_uuid", reaction_reactant_list_uuid);
-            return await ReadAllAsync(await command.ExecuteReaderAsync());
+            return await ReadAllReactantsProductsAsync(await command.ExecuteReaderAsync());
         }
 
-        public async Task<IReadOnlyList<ReactantProductList>> GetProductsAsync(Guid reaction_product_list_uuid)
+        public async Task<IReadOnlyList<ReactantsProducts>> GetProductsAsync(Guid reaction_product_list_uuid)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = "SELECT * FROM Reactant_Product_List WHERE reactant_product_uuid = @reaction_product_list_uuid";
+            command.CommandText = "SELECT Reactant_Product_List.reactant_product_uuid, Reactant_Product_List.reaction_uuid, Reactant_Product_List.species_uuid, Reactant_Product_List.quantity, Species.type " +
+                "FROM Reactant_Product_List LEFT JOIN Species ON species_uuid = uuid WHERE reactant_product_uuid = @reaction_product_list_uuid";
             command.Parameters.AddWithValue("@reaction_product_list_uuid", reaction_product_list_uuid);
-            return await ReadAllAsync(await command.ExecuteReaderAsync());
+            return await ReadAllReactantsProductsAsync(await command.ExecuteReaderAsync());
         }
 
         public async Task CreateReactantProductListAsync(ReactantProductList reactantProduct)
@@ -106,6 +108,27 @@ namespace Chemistry_Cafe_API.Services
                         reaction_uuid = reader.GetGuid(1),
                         species_uuid = reader.GetGuid(2),
                         quantity = reader.GetInt32(3)
+                    };
+                    reactantProductList.Add(property);
+                }
+            }
+            return reactantProductList;
+        }
+
+        private async Task<IReadOnlyList<ReactantsProducts>> ReadAllReactantsProductsAsync(DbDataReader reader)
+        {
+            var reactantProductList = new List<ReactantsProducts>();
+            using (reader)
+            {
+                while (await reader.ReadAsync())
+                {
+                    var property = new ReactantsProducts
+                    {
+                        reactant_product_uuid = reader.GetGuid(0),
+                        reaction_uuid = reader.GetGuid(1),
+                        species_uuid = reader.GetGuid(2),
+                        quantity = reader.GetInt32(3),
+                        type = reader.GetString(4)
                     };
                     reactantProductList.Add(property);
                 }

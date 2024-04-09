@@ -36,14 +36,14 @@ namespace Chemistry_Cafe_API.Controllers
 
         // GET api/ReactantProductList/Reactants/5
         [HttpGet("Reactants/{reaction_reactant_list_uuid}")]
-        public async Task<IReadOnlyList<ReactantProductList>> GetReactants(Guid reaction_reactant_list_uuid)
+        public async Task<IReadOnlyList<ReactantsProducts>> GetReactants(Guid reaction_reactant_list_uuid)
         {
             return await userpreferencesService.GetReactantsAsync(reaction_reactant_list_uuid);
         }
 
         // GET api/ReactantProductList/Products/5
         [HttpGet("Products/{reaction_product_list_uuid}")]
-        public async Task<IReadOnlyList<ReactantProductList>> GetProducts(Guid reaction_product_list_uuid)
+        public async Task<IReadOnlyList<ReactantsProducts>> GetProducts(Guid reaction_product_list_uuid)
         {
             return await userpreferencesService.GetProductsAsync(reaction_product_list_uuid);
         }
