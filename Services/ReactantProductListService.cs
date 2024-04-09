@@ -23,7 +23,7 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"SELECT * FROM Reactant_Product_List WHERE uuid = @id";
+            command.CommandText = @"SELECT * FROM Reactant_Product_List WHERE reactant_product_uuid = @id";
             command.Parameters.AddWithValue("@id", uuid);
 
             var result = await ReadAllAsync(await command.ExecuteReaderAsync());
@@ -57,9 +57,11 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
+            Guid reactantProductID = Guid.NewGuid();
+
             command.CommandText = @"INSERT INTO Reactant_Product_List (reactant_product_uuid, reaction_uuid, species_uuid, quantity) VALUES (@reactant_product_uuid, @reaction_uuid, @species_uuid, @quantity);";
 
-            command.Parameters.AddWithValue("@reactant_product_uuid", reactantProduct.reactant_product_uuid);
+            command.Parameters.AddWithValue("@reactant_product_uuid", reactantProductID);
             command.Parameters.AddWithValue("@reaction_uuid", reactantProduct.reaction_uuid);
             command.Parameters.AddWithValue("@species_uuid", reactantProduct.species_uuid);
             command.Parameters.AddWithValue("@quantity", reactantProduct.quantity);
@@ -71,9 +73,9 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Reactant_Product_List SET reaction_uuid = @reaction_uuid, quantity = @quantity, isDel = @isDel WHERE uuid = @uuid;";
+            command.CommandText = @"UPDATE Reactant_Product_List SET reactant_product_uuid = @reactant_product_uuid, reaction_uuid = @reaction_uuid, species_uuid = @species_uuid, quantity = @quantity WHERE uuid = @uuid;";
 
-            command.Parameters.AddWithValue("@uuid", reactantProduct.reactant_product_uuid);
+            command.Parameters.AddWithValue("@reactant_product_uuid", reactantProduct.reactant_product_uuid);
             command.Parameters.AddWithValue("@reaction_uuid", reactantProduct.reaction_uuid);
             command.Parameters.AddWithValue("@species_uuid", reactantProduct.species_uuid);
             command.Parameters.AddWithValue("@quantity", reactantProduct.quantity);
@@ -86,9 +88,9 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Reactant_Product_List SET isDel = 1 WHERE uuid = @uuid;";
+            command.CommandText = @"DELETE FROM Reactant_Product_List WHERE reactant_product_uuid = @reactant_product_uuid;";
 
-            command.Parameters.AddWithValue("@uuid", uuid);
+            command.Parameters.AddWithValue("@reactant_product_uuid", uuid);
 
             await command.ExecuteNonQueryAsync();
         }
