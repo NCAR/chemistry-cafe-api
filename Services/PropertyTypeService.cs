@@ -2,6 +2,8 @@
 using System.Data.Common;
 using MySqlConnector;
 using Microsoft.AspNetCore.Mvc;
+using System.Xml;
+using System.Xml.Linq;
 
 
 namespace Chemistry_Cafe_API.Services
@@ -82,14 +84,22 @@ namespace Chemistry_Cafe_API.Services
             {
                 while (await reader.ReadAsync())
                 {
-                    var propertytype = new PropertyType
+                    var propertytype = new PropertyType();
+                    propertytype.uuid = reader.GetGuid(0);
+                    if (!reader.IsDBNull(1))
                     {
-                        uuid = reader.GetGuid(0),
-                        name = reader.GetString(1),
-                        units = reader.GetString(2),
-                        validation = reader.GetString(3),
-                        isDel = reader.GetBoolean(4),
-                    };
+                        propertytype.name = reader.GetString(1);
+                    }
+                    if (!reader.IsDBNull(2))
+                    {
+                        propertytype.units = reader.GetString(2);
+                    }
+                    if (!reader.IsDBNull(3))
+                    {
+                        propertytype.validation = reader.GetString(3);
+                    }
+                    propertytype.isDel = reader.GetBoolean(4);
+                    
                     propertytypes.Add(propertytype);
                 }
             }

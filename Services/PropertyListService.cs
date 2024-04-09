@@ -29,6 +29,19 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
+        public async Task<IReadOnlyList<Property>> GetPropertiesAsync(Guid parent_uuid)
+        {
+            using var connection = await database.OpenConnectionAsync();
+            using var command = connection.CreateCommand();
+
+            command.CommandText = @"SELECT * FROM Property_List RIGHT JOIN Property_Version ON Property_List.uuid = Property_Version.parent_property_uuid 
+                LEFT JOIN PropertyType ON Property_Version.property_type = PropertyType.uuid 
+                WHERE Property_List.parent_uuid = @parent_uuid ORDER BY datetime DESC;";
+            command.Parameters.AddWithValue("@parent_uuid", parent_uuid);
+
+            return await ReadAllPropertiesAsync(await command.ExecuteReaderAsync());
+        }
+
         public async Task<Guid> CreatePropertyListAsync(PropertyList userPreferences)
         {
             using var connection = await database.OpenConnectionAsync();
@@ -87,6 +100,68 @@ namespace Chemistry_Cafe_API.Services
                         version = reader.GetString(2),
                         isDel = reader.GetBoolean(3),
                     };
+                    propertyList.Add(property);
+                }
+            }
+            return propertyList;
+        }
+
+        private async Task<IReadOnlyList<Property>> ReadAllPropertiesAsync(DbDataReader reader)
+        {
+            var propertyList = new List<Property>();
+            using (reader)
+            {
+                while (await reader.ReadAsync())
+                {
+                    var property = new Property
+                    {
+                        property_list_uuid = reader.GetGuid(0),
+                        parent_uuid = reader.GetGuid(1),
+                        version = reader.GetString(2),
+                        property_list_isDel = reader.GetBoolean(3),
+                        property_version_uuid = reader.GetGuid(4),
+                        parent_property_uuid = reader.GetGuid(5),
+                        frozen_version = reader.GetString(6),
+                        mechanism_uuid = reader.GetGuid(7),
+                        property_type = reader.GetGuid(8),
+                        user_uuid = reader.GetGuid(14),
+                        datetime = reader.GetDateTime(15),
+                        property_version_isDel = reader.GetBoolean(16),
+                        property_type_uuid = reader.GetGuid(17),
+                        property_type_isDel = reader.GetBoolean(21)
+                    };
+                    if (!reader.IsDBNull(9))
+                    {
+                        property.float_value = reader.GetFloat(9);
+                    }
+                    if (!reader.IsDBNull(10))
+                    {
+                        property.double_value = reader.GetDouble(10);
+                    }
+                    if (!reader.IsDBNull(11))
+                    {
+                        property.int_value = reader.GetInt32(11);
+                    }
+                    if (!reader.IsDBNull(12))
+                    {
+                        property.string_value = reader.GetString(12);
+                    }
+                    if (!reader.IsDBNull(13))
+                    {
+                        property.action = reader.GetString(13);
+                    }
+                    if (!reader.IsDBNull(18))
+                    {
+                        property.name = reader.GetString(18);
+                    }
+                    if (!reader.IsDBNull(19))
+                    {
+                        property.units = reader.GetString(19);
+                    }
+                    if (!reader.IsDBNull(20))
+                    {
+                        property.validation = reader.GetString(20);
+                    }
                     propertyList.Add(property);
                 }
             }
