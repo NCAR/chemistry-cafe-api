@@ -134,7 +134,7 @@ namespace Chemistry_Cafe_API.Services
                 }
                 JSON += "        }\n" +
                     "      ], \n";
-                JSON += "    }";
+                JSON += "    }\n";
             }
 
             JSON += "  ]\n}";
