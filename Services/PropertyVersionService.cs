@@ -37,7 +37,7 @@ namespace Chemistry_Cafe_API.Services
 
             command.CommandText = @"INSERT INTO Property_Version (uuid, parent_property_uuid, frozen_version, mechanism_uuid, property_type,
             float_value, double_value, int_value, string_value, action, user_uuid, datetime) 
-            VALUES (@uuid, @parent_propert_uuid, @frozen_version, @mechanism_uuid, @property_type, @float_value, @double_value, @int_value, @string_value, @action, @user_uuid, @datetime);";
+            VALUES (@uuid, @parent_property_uuid, @frozen_version, @mechanism_uuid, @property_type, @float_value, @double_value, @int_value, @string_value, @action, @user_uuid, @datetime);";
 
             command.Parameters.AddWithValue("@uuid", propertyVersionID);
             command.Parameters.AddWithValue("@parent_property_uuid", newPropertyVersion.parent_property_uuid);
