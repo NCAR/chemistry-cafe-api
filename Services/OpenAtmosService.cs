@@ -63,6 +63,7 @@ namespace Chemistry_Cafe_API.Services
                 JSON += "    }, \n";
             }
             JSON = JSON.Remove(JSON.LastIndexOf(','));
+            JSON += "\n";
 
             JSON += "  ],\n" +
                 "  \"phases\": [ \n" +
