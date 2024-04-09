@@ -36,7 +36,7 @@ namespace Chemistry_Cafe_API.Services
 
             command.CommandText = @"SELECT * FROM Property_List RIGHT JOIN Property_Version ON Property_List.uuid = Property_Version.parent_property_uuid 
                 LEFT JOIN PropertyType ON Property_Version.property_type = PropertyType.uuid 
-                WHERE Property_List.parent_uuid = @parent_uuid AND Property_List.version = frozen_version ORDER BY datetime DESC;";
+                WHERE Property_List.parent_uuid = @parent_uuid ORDER BY datetime DESC;";
             command.Parameters.AddWithValue("@parent_uuid", parent_uuid);
 
             return await ReadAllPropertiesAsync(await command.ExecuteReaderAsync());
