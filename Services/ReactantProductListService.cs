@@ -57,11 +57,10 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            Guid reactantProductID = Guid.NewGuid();
 
             command.CommandText = @"INSERT INTO Reactant_Product_List (reactant_product_uuid, reaction_uuid, species_uuid, quantity) VALUES (@reactant_product_uuid, @reaction_uuid, @species_uuid, @quantity);";
 
-            command.Parameters.AddWithValue("@reactant_product_uuid", reactantProductID);
+            command.Parameters.AddWithValue("@reactant_product_uuid", reactantProduct.reactant_product_uuid);
             command.Parameters.AddWithValue("@reaction_uuid", reactantProduct.reaction_uuid);
             command.Parameters.AddWithValue("@species_uuid", reactantProduct.species_uuid);
             command.Parameters.AddWithValue("@quantity", reactantProduct.quantity);
@@ -83,7 +82,7 @@ namespace Chemistry_Cafe_API.Services
             await command.ExecuteNonQueryAsync();
         }
 
-        public async Task DeleteReactantProductListAsync(Guid uuid)
+        public async Task DeleteReactantProductListAsync(Guid reactant_product_uuid)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
