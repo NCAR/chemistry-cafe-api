@@ -116,26 +116,40 @@ namespace Chemistry_Cafe_API.Services
                     JSON += ", \n";
                 }
                 var reactants = reactantProductListService.GetReactantsAsync(reaction.reactant_list_uuid).Result;
-                JSON += "      \"reactants\": [ \n" +
-                    "        {\n";
-                foreach (ReactantsProducts reactant in reactants)
+                if(reactants.Count != 0)
                 {
-                    JSON += "          \"species name\": \"" + reactant.type + "\", \n";
-                    JSON += "          \"coefficient\": \"" + reactant.quantity + "\" \n";
+                    JSON += "      \"reactants\": [ \n" +
+                    "        {\n";
+                    foreach (ReactantsProducts reactant in reactants)
+                    {
+                        JSON += "          \"species name\": \"" + reactant.type + "\", \n";
+                        JSON += "          \"coefficient\": \"" + reactant.quantity + "\" \n";
+                    }
+                    JSON += "        }\n" +
+                        "      ], \n";
                 }
-                JSON += "        }\n" +
-                    "      ], \n";
 
                 var products = reactantProductListService.GetProductsAsync(reaction.product_list_uuid).Result;
-                JSON += "      \"products\": [ \n" +
-                    "        {\n";
-                foreach (ReactantsProducts product in products)
+
+                if(products.Count != 0)
                 {
-                    JSON += "          \"species name\": \"" + product.type + "\", \n";
-                    JSON += "          \"coefficient\": \"" + product.quantity + "\" \n";
+                    JSON += "      \"products\": [ \n" +
+                    "        {\n";
+                    foreach (ReactantsProducts product in products)
+                    {
+                        JSON += "          \"species name\": \"" + product.type + "\", \n";
+                        JSON += "          \"coefficient\": \"" + product.quantity + "\" \n";
+                    }
+                    JSON += "        }\n" +
+                        "      ]\n";
                 }
-                JSON += "        }\n" +
-                    "      ]\n";
+
+                if(reactants.Count == 0 && products.Count == 0)
+                {
+                    JSON = JSON.Remove(JSON.LastIndexOf(','));
+                    JSON += "\n";
+                }
+                
                 JSON += "    },\n";
             }
             JSON = JSON.Remove(JSON.LastIndexOf(','));
