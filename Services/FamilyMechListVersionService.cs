@@ -12,7 +12,7 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = "SELECT * FROM Family_Mechanism_List_Version";
+            command.CommandText = "SELECT * FROM Family_Mechanism_List_Version WHERE isDel = 0";
             return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
 
@@ -35,11 +35,11 @@ namespace Chemistry_Cafe_API.Services
 
             Guid familyMechListVersionID = Guid.NewGuid();
 
-            command.CommandText = @"INSERT INTO Family_Mechanism_List_Version (uuid, family_uuid, mechanism_uuid, frozen_version, action, user_uuid, datetime) VALUES (@uuid, @family_uuid, @mechanism_uuid, @frozen_version, @action, @user_uuid, @datetime);";
+            command.CommandText = @"INSERT INTO Family_Mechanism_List_Version (uuid, family_uuid, tag_mechanism_uuid, frozen_version, action, user_uuid, datetime) VALUES (@uuid, @family_uuid, @tag_mechanism_uuid, @frozen_version, @action, @user_uuid, @datetime);";
 
             command.Parameters.AddWithValue("@uuid", familyMechListVersionID);
             command.Parameters.AddWithValue("@family_uuid", newFamilyMechListVersion.family_uuid);
-            command.Parameters.AddWithValue("@mechanism_uuid", newFamilyMechListVersion.mechanism_uuid);
+            command.Parameters.AddWithValue("@tag_mechanism_uuid", newFamilyMechListVersion.tag_mechanism_uuid);
             command.Parameters.AddWithValue("@frozen_version", newFamilyMechListVersion.frozen_version);
             command.Parameters.AddWithValue("@action", newFamilyMechListVersion.action);
             command.Parameters.AddWithValue("@user_uuid", newFamilyMechListVersion.user_uuid);
@@ -54,11 +54,11 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Family_Mechanism_List_Version SET family_uuid = @family_uuid, mechanism_uuid = @mechanism_uuid, frozen_version = @frozen_version, action = @action, user_uuid = @user_uuid, datetime = @datetime, isDel = @isDel WHERE uuid = @uuid;";
+            command.CommandText = @"UPDATE Family_Mechanism_List_Version SET family_uuid = @family_uuid, tag_mechanism_uuid = @tag_mechanism_uuid, frozen_version = @frozen_version, action = @action, user_uuid = @user_uuid, datetime = @datetime, isDel = @isDel WHERE uuid = @uuid;";
             
             command.Parameters.AddWithValue("@uuid", familyMechListVersion.uuid);
             command.Parameters.AddWithValue("@family_uuid", familyMechListVersion.family_uuid);
-            command.Parameters.AddWithValue("@mechanism_uuid", familyMechListVersion.mechanism_uuid);
+            command.Parameters.AddWithValue("@tag_mechanism_uuid", familyMechListVersion.tag_mechanism_uuid);
             command.Parameters.AddWithValue("@frozen_version", familyMechListVersion.frozen_version);
             command.Parameters.AddWithValue("@action", familyMechListVersion.action);
             command.Parameters.AddWithValue("@user_uuid", familyMechListVersion.user_uuid);
@@ -91,7 +91,7 @@ namespace Chemistry_Cafe_API.Services
                     {
                         uuid = reader.GetGuid(0),
                         family_uuid = reader.GetGuid(1),
-                        mechanism_uuid = reader.GetGuid(2),
+                        tag_mechanism_uuid = reader.GetGuid(2),
                         frozen_version = reader.GetString(3),
                         action = reader.GetString(4),
                         user_uuid = reader.GetGuid(5),

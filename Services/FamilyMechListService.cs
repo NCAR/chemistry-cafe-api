@@ -35,11 +35,11 @@ namespace Chemistry_Cafe_API.Services
 
             Guid familyMechListID = Guid.NewGuid();
 
-            command.CommandText = @"INSERT INTO Family_Mechanism_List (uuid, family_uuid, mechanism_uuid, version) VALUES (@uuid, @family_uuid, @mechanism_uuid, @version);";
+            command.CommandText = @"INSERT INTO Family_Mechanism_List (uuid, family_uuid, tag_mechanism_uuid, version) VALUES (@uuid, @family_uuid, @tag_mechanism_uuid, @version);";
 
             command.Parameters.AddWithValue("@uuid", familyMechListID);
             command.Parameters.AddWithValue("@family_uuid", newFamilyMechList.family_uuid);
-            command.Parameters.AddWithValue("@mechanism_uuid", newFamilyMechList.mechanism_uuid);
+            command.Parameters.AddWithValue("@tag_mechanism_uuid", newFamilyMechList.tag_mechanism_uuid);
             command.Parameters.AddWithValue("@version", newFamilyMechList.version);
 
             await command.ExecuteNonQueryAsync();
@@ -51,11 +51,11 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Family_Mechanism_List SET family_uuid = @family_uuid, mechanism_uuid = @mechanism_uuid, version = @version, isDel = @isDel WHERE uuid = @uuid;";
+            command.CommandText = @"UPDATE Family_Mechanism_List SET family_uuid = @family_uuid, tag_mechanism_uuid = @tag_mechanism_uuid, version = @version, isDel = @isDel WHERE uuid = @uuid;";
             
             command.Parameters.AddWithValue("@uuid", familyMechList.uuid);
             command.Parameters.AddWithValue("@family_uuid", familyMechList.family_uuid);
-            command.Parameters.AddWithValue("@mechanism_uuid", familyMechList.mechanism_uuid);
+            command.Parameters.AddWithValue("@tag_mechanism_uuid", familyMechList.tag_mechanism_uuid);
             command.Parameters.AddWithValue("@version", familyMechList.version);
             command.Parameters.AddWithValue("@isDel", familyMechList.isDel);
 
@@ -85,7 +85,7 @@ namespace Chemistry_Cafe_API.Services
                     {
                         uuid = reader.GetGuid(0),
                         family_uuid = reader.GetGuid(1),
-                        mechanism_uuid = reader.GetGuid(2),
+                        tag_mechanism_uuid = reader.GetGuid(2),
                         version = reader.GetString(3),
                         isDel = reader.GetBoolean(4),
                     };

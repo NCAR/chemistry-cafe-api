@@ -29,13 +29,13 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
-        public async Task<IReadOnlyList<TagMechanism>> GetTagsAsync(Guid mechanism_uuid)
+        public async Task<IReadOnlyList<TagMechanism>> GetTagsAsync(Guid family_uuid)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"SELECT TagMechanism.uuid, TagMechanism.tag, TagMechanism.isDel FROM Mechanism_TagMechanism_List LEFT JOIN TagMechanism ON tag_mechanism_uuid = TagMechanism.uuid WHERE mechanism_uuid = @mechanism_uuid";
-            command.Parameters.AddWithValue("@mechanism_uuid", mechanism_uuid);
+            command.CommandText = @"SELECT TagMechanism.uuid, TagMechanism.tag, TagMechanism.isDel FROM Family_Mechanism_List LEFT JOIN TagMechanism ON tag_mechanism_uuid = TagMechanism.uuid WHERE family_uuid = @family_uuid";
+            command.Parameters.AddWithValue("@family_uuid", family_uuid);
 
             return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
