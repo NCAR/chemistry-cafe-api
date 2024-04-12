@@ -35,7 +35,7 @@ namespace Chemistry_Cafe_API.Controllers
 
         // POST api/Family/create
         [HttpPost("create")]
-        public async Task<Guid> Create([FromBody] string name)
+        public async Task<Family> Create([FromBody] string name)
         {
             return await familyService.CreateFamilyAsync(name);
         }

@@ -122,7 +122,7 @@ namespace Chemistry_Cafe_API.Services
                         property_version_uuid = reader.GetGuid(4),
                         parent_property_uuid = reader.GetGuid(5),
                         frozen_version = reader.GetString(6),
-                        mechanism_uuid = reader.GetGuid(7),
+                        tag_mechanism_uuid = reader.GetGuid(7),
                         property_type = reader.GetGuid(8),
                         user_uuid = reader.GetGuid(14),
                         datetime = reader.GetDateTime(15),

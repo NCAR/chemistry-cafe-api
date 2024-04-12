@@ -29,31 +29,46 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
-        public async Task<Guid> CreateFamilyAsync(string name)
+        public async Task<Family> CreateFamilyAsync(string name)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            Guid familyID = Guid.NewGuid();
+            Guid tagMechanismID = Guid.NewGuid();
 
-            command.CommandText = @"INSERT INTO Family (uuid, name) VALUES (@uuid, @name);";
+            command.CommandText = @"INSERT INTO TagMechanism (uuid, tag) VALUES (@tag_mechanism_uuid, @tag);";
+
+            command.Parameters.AddWithValue("@tag_mechanism_uuid", tagMechanismID);
+            command.Parameters.AddWithValue("@tag", name + "-SuperTagMechanism");
+
+            Guid familyID = Guid.NewGuid();
+            
+            command.CommandText += @"INSERT INTO Family (uuid, name, super_tag_mechanism_uuid) VALUES (@uuid, @name, @super_tag_mechanism_uuid);";
 
             command.Parameters.AddWithValue("@uuid", familyID);
             command.Parameters.AddWithValue("@name", name);
+            command.Parameters.AddWithValue("@super_tag_mechanism_uuid", tagMechanismID);
+
+            Family family = new Family();
+            family.uuid = familyID;
+            family.name = name;
+            family.super_tag_mechanism_uuid = tagMechanismID;
+            family.isDel = false;
 
             await command.ExecuteNonQueryAsync();
 
-            return familyID;
+            return family;
         }
         public async Task UpdateFamilyAsync(Family family)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Family SET name = @name, isDel = @isDel WHERE uuid = @uuid;";
+            command.CommandText = @"UPDATE Family SET name = @name, super_tag_mechanism_uuid = @super_tag_mechanism_uuid, isDel = @isDel WHERE uuid = @uuid;";
 
             command.Parameters.AddWithValue("@uuid", family.uuid);
             command.Parameters.AddWithValue("@name", family.name);
+            command.Parameters.AddWithValue("@super_tag_mechanism_uuid", family.super_tag_mechanism_uuid);
             command.Parameters.AddWithValue("@isDel", family.isDel);
 
             await command.ExecuteNonQueryAsync();
@@ -82,7 +97,8 @@ namespace Chemistry_Cafe_API.Services
                     {
                         uuid = reader.GetGuid(0),
                         name = reader.GetString(1),
-                        isDel = reader.GetBoolean(2),
+                        super_tag_mechanism_uuid = reader.GetGuid(2),
+                        isDel = reader.GetBoolean(3),
                     };
                     families.Add(family);
                 }
