@@ -69,6 +69,11 @@ namespace Chemistry_Cafe_API.Services
             {
                 reactionString = reactionString.Remove(reactionString.LastIndexOf('+'));
             }
+            else
+            {
+                reactionString += "<none> ";
+            }
+
             reactionString += "-> ";
 
             foreach ( var product in products)
@@ -80,6 +85,10 @@ namespace Chemistry_Cafe_API.Services
             if (isProduct)
             {
                 reactionString = reactionString.Remove(reactionString.LastIndexOf('+'));
+            }
+            else
+            {
+                reactionString += "<none>";
             }
 
             return reactionString;
