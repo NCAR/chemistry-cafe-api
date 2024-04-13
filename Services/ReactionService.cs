@@ -41,6 +41,50 @@ namespace Chemistry_Cafe_API.Services
             return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
 
+        public async Task<String?> GetReactionStringAsync(Guid uuid)
+        {
+            using var connection = await database.OpenConnectionAsync();
+            using var command = connection.CreateCommand();
+
+            command.CommandText = @"SELECT * FROM Reaction WHERE uuid = @id";
+            command.Parameters.AddWithValue("@id", uuid);
+
+            var result = await ReadAllAsync(await command.ExecuteReaderAsync());
+
+            ReactantProductListService reactantProductListService = new ReactantProductListService(database);
+
+            var reactants = reactantProductListService.GetReactantsAsync(result[0].reactant_list_uuid).Result;
+            var products = reactantProductListService.GetProductsAsync(result[0].product_list_uuid).Result;
+
+            string reactionString = "";
+            bool isReact = false;
+            bool isProduct = false;
+
+            foreach( var reactant in reactants)
+            {
+                reactionString += "" + reactant.quantity + reactant.type + " + ";
+                isReact = true;
+            }
+            if (isReact)
+            {
+                reactionString = reactionString.Remove(reactionString.LastIndexOf('+'));
+            }
+            reactionString += "-> ";
+
+            foreach ( var product in products)
+            {
+                reactionString += "" + product.quantity + product.type + " + ";
+                isProduct = true;
+            }
+
+            if (isProduct)
+            {
+                reactionString = reactionString.Remove(reactionString.LastIndexOf('+'));
+            }
+
+            return reactionString;
+        }
+
 
         public async Task<Guid> CreateReactionAsync(string type)
         {
