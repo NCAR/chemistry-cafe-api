@@ -15,7 +15,15 @@ namespace Chemistry_Cafe_API.Services
             using var command = connection.CreateCommand();
 
             command.CommandText = "SELECT * FROM Reaction";
-            return await ReadAllAsync(await command.ExecuteReaderAsync());
+            var list = ReadAllAsync(await command.ExecuteReaderAsync()).Result;
+
+            List<string> reactions = new List<string>();
+            foreach (var item in list)
+            {
+                reactions.Add(GetReactionStringAsync(item.uuid).Result);
+            }
+
+            return await ReadAllAsync(await command.ExecuteReaderAsync(), reactions);
         }
 
         public async Task<Reaction?> GetReactionAsync(Guid uuid)
@@ -143,9 +151,10 @@ namespace Chemistry_Cafe_API.Services
             await command.ExecuteNonQueryAsync();
         }
 
-        private async Task<IReadOnlyList<Reaction>> ReadAllAsync(DbDataReader reader)
+        private async Task<IReadOnlyList<Reaction>> ReadAllAsync(DbDataReader reader, List<string> reactionString = null)
         {
             var reactions = new List<Reaction>();
+            int i = 0;
             using (reader)
             {
                 while (await reader.ReadAsync())
@@ -164,7 +173,12 @@ namespace Chemistry_Cafe_API.Services
                     {
                         reaction.product_list_uuid = reader.GetGuid(4);
                     }
+                    if (reactionString != null)
+                    {
+                        reaction.reaction_string = reactionString[i];
+                    }
                     reactions.Add(reaction);
+                    i++;
                 }
             }
             return reactions;
