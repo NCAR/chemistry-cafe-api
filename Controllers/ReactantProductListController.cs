@@ -57,9 +57,9 @@ namespace Chemistry_Cafe_API.Controllers
 
         // PUT api/ReactantProductList/5
         [HttpPut("update")]
-        public async Task Put([FromBody] ReactantProductList userpreferences)
+        public async Task Put([FromBody] ReactantProductList reactantProductList)
         {
-            await userpreferencesService.UpdateReactantProductListAsync(userpreferences);
+            await userpreferencesService.UpdateReactantProductListAsync(reactantProductList);
         }
 
         // DELETE api/ReactantProductList/delete  Body [reaction_product_uuid, species_uuid]

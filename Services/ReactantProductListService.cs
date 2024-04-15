@@ -72,12 +72,14 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Reactant_Product_List SET reactant_product_uuid = @reactant_product_uuid, reaction_uuid = @reaction_uuid, species_uuid = @species_uuid, quantity = @quantity WHERE uuid = @uuid;";
+            command.CommandText = @"UPDATE Reactant_Product_List SET quantity = @quantity WHERE reactant_product_uuid = @reactant_product_uuid AND species_uuid = @species_uuid AND reaction_uuid = @reaction_uuid;";
 
             command.Parameters.AddWithValue("@reactant_product_uuid", reactantProduct.reactant_product_uuid);
             command.Parameters.AddWithValue("@reaction_uuid", reactantProduct.reaction_uuid);
             command.Parameters.AddWithValue("@species_uuid", reactantProduct.species_uuid);
             command.Parameters.AddWithValue("@quantity", reactantProduct.quantity);
+
+
 
             await command.ExecuteNonQueryAsync();
         }
@@ -89,7 +91,7 @@ namespace Chemistry_Cafe_API.Services
 
             command.CommandText = @"DELETE FROM Reactant_Product_List WHERE reactant_product_uuid = @reactant_product_uuid AND species_uuid = @species_uuid;";
 
-            command.Parameters.AddWithValue("@reactant_product_uuid", uuids.reactant_porodct_uuid);
+            command.Parameters.AddWithValue("@reactant_product_uuid", uuids.reactant_product_uuid);
             command.Parameters.AddWithValue("@species_uuid", uuids.species_uuid);
 
             await command.ExecuteNonQueryAsync();
