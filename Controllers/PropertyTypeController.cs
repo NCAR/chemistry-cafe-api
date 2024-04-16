@@ -33,6 +33,13 @@ namespace Chemistry_Cafe_API.Controllers
             return await propertyTypeService.GetPropertyTypeAsync(uuid);
         }
 
+        // GET: api/PropertyType/Validation/uuid
+        [HttpGet("Validation/{validation}")]
+        public async Task<IReadOnlyList<PropertyType>> GetValidation(string validation)
+        {
+            return await propertyTypeService.GetPropertyTypeValidationAsync(validation);
+        }
+
         // POST api/PropertyType/create
         [HttpPost("create")]
         public async Task<Guid> Create([FromBody] PropertyType propertyType)

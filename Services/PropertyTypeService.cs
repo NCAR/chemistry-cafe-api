@@ -31,6 +31,17 @@ namespace Chemistry_Cafe_API.Services
             return result.FirstOrDefault();
         }
 
+        public async Task<IReadOnlyList<PropertyType>> GetPropertyTypeValidationAsync(string validation)
+        {
+            using var connection = await database.OpenConnectionAsync();
+            using var command = connection.CreateCommand();
+
+            command.CommandText = @"SELECT * FROM PropertyType WHERE validation = @validation";
+            command.Parameters.AddWithValue("@validation", validation);
+
+            return await ReadAllAsync(await command.ExecuteReaderAsync());
+        }
+
         public async Task<Guid> CreatePropertyTypeAsync(PropertyType propertyType)
         {
             using var connection = await database.OpenConnectionAsync();
