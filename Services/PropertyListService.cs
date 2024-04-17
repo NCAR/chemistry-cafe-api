@@ -34,7 +34,7 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"SELECT * FROM Property_List RIGHT JOIN Property_Version ON Property_List.uuid = Property_Version.parent_property_uuid 
+            command.CommandText = @"SELECT * FROM Property_List RIGHT JOIN Property_Version ON Property_List.uuid = Property_Version.parent_property_uuid  AND Property_List.version = Property_Version.frozen_version
                 LEFT JOIN PropertyType ON Property_Version.property_type = PropertyType.uuid 
                 WHERE Property_List.parent_uuid = @parent_uuid ORDER BY datetime DESC;";
             command.Parameters.AddWithValue("@parent_uuid", parent_uuid);
