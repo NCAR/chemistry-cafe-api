@@ -39,7 +39,7 @@ namespace Chemistry_Cafe_API.Services
             command.CommandText = @"INSERT INTO TagMechanism (uuid, tag) VALUES (@tag_mechanism_uuid, @tag);";
 
             command.Parameters.AddWithValue("@tag_mechanism_uuid", tagMechanismID);
-            command.Parameters.AddWithValue("@tag", name + "-SuperTagMechanism");
+            command.Parameters.AddWithValue("@tag", name + "-FamilySuperMechanism");
 
             Guid familyID = Guid.NewGuid();
             
