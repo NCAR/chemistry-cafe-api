@@ -13,7 +13,7 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = "SELECT * FROM Family";
+            command.CommandText = "SELECT * FROM Family WHERE isDel = FALSE";
             return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
 
