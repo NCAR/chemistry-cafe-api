@@ -5,37 +5,37 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Chemistry_Cafe_API.Services
 {
-    public class FamilyMechListVersionService(MySqlDataSource database)
+    public class FamilyTagMechListVersionService(MySqlDataSource database)
     {
-        public async Task<IReadOnlyList<FamilyMechListVersion>> GetFamilyMechListVersionsAsync()
+        public async Task<IReadOnlyList<FamilyTagMechListVersion>> GetFamilyMechListVersionsAsync()
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = "SELECT * FROM Family_Mechanism_List_Version WHERE isDel = 0";
+            command.CommandText = "SELECT * FROM Family_TagMechanism_List_Version WHERE isDel = 0";
             return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
 
-        public async Task<FamilyMechListVersion?> GetFamilyMechListVersionAsync(Guid uuid)
+        public async Task<FamilyTagMechListVersion?> GetFamilyMechListVersionAsync(Guid uuid)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"SELECT * FROM Family_Mechanism_List_Version WHERE uuid = @id";
+            command.CommandText = @"SELECT * FROM Family_TagMechanism_List_Version WHERE uuid = @id";
             command.Parameters.AddWithValue("@id", uuid);
 
             var result = await ReadAllAsync(await command.ExecuteReaderAsync());
             return result.FirstOrDefault();
         }
 
-        public async Task<Guid> CreateFamilyMechListVersionAsync(FamilyMechListVersion newFamilyMechListVersion)
+        public async Task<Guid> CreateFamilyMechListVersionAsync(FamilyTagMechListVersion newFamilyMechListVersion)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
             Guid familyMechListVersionID = Guid.NewGuid();
 
-            command.CommandText = @"INSERT INTO Family_Mechanism_List_Version (uuid, family_uuid, tag_mechanism_uuid, frozen_version, action, user_uuid, datetime) VALUES (@uuid, @family_uuid, @tag_mechanism_uuid, @frozen_version, @action, @user_uuid, @datetime);";
+            command.CommandText = @"INSERT INTO Family_TagMechanism_List_Version (uuid, family_uuid, tag_mechanism_uuid, frozen_version, action, user_uuid, datetime) VALUES (@uuid, @family_uuid, @tag_mechanism_uuid, @frozen_version, @action, @user_uuid, @datetime);";
 
             command.Parameters.AddWithValue("@uuid", familyMechListVersionID);
             command.Parameters.AddWithValue("@family_uuid", newFamilyMechListVersion.family_uuid);
@@ -49,12 +49,12 @@ namespace Chemistry_Cafe_API.Services
 
             return familyMechListVersionID;
         }
-        public async Task UpdateFamilyMechListVersionAsync(FamilyMechListVersion familyMechListVersion)
+        public async Task UpdateFamilyMechListVersionAsync(FamilyTagMechListVersion familyMechListVersion)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Family_Mechanism_List_Version SET family_uuid = @family_uuid, tag_mechanism_uuid = @tag_mechanism_uuid, frozen_version = @frozen_version, action = @action, user_uuid = @user_uuid, datetime = @datetime, isDel = @isDel WHERE uuid = @uuid;";
+            command.CommandText = @"UPDATE Family_TagMechanism_List_Version SET family_uuid = @family_uuid, tag_mechanism_uuid = @tag_mechanism_uuid, frozen_version = @frozen_version, action = @action, user_uuid = @user_uuid, datetime = @datetime, isDel = @isDel WHERE uuid = @uuid;";
             
             command.Parameters.AddWithValue("@uuid", familyMechListVersion.uuid);
             command.Parameters.AddWithValue("@family_uuid", familyMechListVersion.family_uuid);
@@ -73,21 +73,21 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Family_Mechanism_List_Version SET isDel = 1 WHERE uuid = @uuid;";
+            command.CommandText = @"UPDATE Family_TagMechanism_List_Version SET isDel = 1 WHERE uuid = @uuid;";
 
             command.Parameters.AddWithValue("@uuid", uuid);
             
             await command.ExecuteNonQueryAsync();
         }
 
-        private async Task<IReadOnlyList<FamilyMechListVersion>> ReadAllAsync(DbDataReader reader)
+        private async Task<IReadOnlyList<FamilyTagMechListVersion>> ReadAllAsync(DbDataReader reader)
         {
-            var familyMechListVersion = new List<FamilyMechListVersion>();
+            var familyMechListVersion = new List<FamilyTagMechListVersion>();
             using (reader)
             {
                 while (await reader.ReadAsync())
                 {
-                    var familyMechVersion = new FamilyMechListVersion
+                    var familyMechVersion = new FamilyTagMechListVersion
                     {
                         uuid = reader.GetGuid(0),
                         family_uuid = reader.GetGuid(1),

@@ -9,40 +9,40 @@ namespace Chemistry_Cafe_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FamilyMechListController : ControllerBase
+    public class FamilyTagMechListController : ControllerBase
     {
-        private FamilyMechListService familyMechListService;
+        private FamilyTagMechListService familyMechListService;
         
         //Injects sql data source setup in Program.cs
-        public FamilyMechListController([FromServices] MySqlDataSource db)
+        public FamilyTagMechListController([FromServices] MySqlDataSource db)
         {
-            this.familyMechListService = new FamilyMechListService(db);
+            this.familyMechListService = new FamilyTagMechListService(db);
         }
 
         // GET: api/FamilyMechList/all
         [HttpGet("all")]
-        public async Task<IReadOnlyList<FamilyMechList>> Get()
+        public async Task<IReadOnlyList<FamilyTagMechList>> Get()
         {
             return await familyMechListService.GetFamilyMechListsAsync();
         }
 
         // GET api/FamilyMechList/5
         [HttpGet("{uuid}")]
-        public async Task<FamilyMechList?> Get(Guid uuid)
+        public async Task<FamilyTagMechList?> Get(Guid uuid)
         {
             return await familyMechListService.GetFamilyMechListAsync(uuid);
         }
 
         // POST api/FamilyMechList/create
         [HttpPost("create")]
-        public async Task<Guid> Create([FromBody] FamilyMechList newFamilyMechList)
+        public async Task<Guid> Create([FromBody] FamilyTagMechList newFamilyMechList)
         {
             return await familyMechListService.CreateFamilyMechListAsync(newFamilyMechList);
         }
 
         // PUT api/FamilyMechList/5
         [HttpPut("update")]
-        public async Task Put([FromBody] FamilyMechList newFamilyMechList)
+        public async Task Put([FromBody] FamilyTagMechList newFamilyMechList)
         {
             await familyMechListService.UpdateFamilyMechListAsync(newFamilyMechList);
         }
