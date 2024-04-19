@@ -15,7 +15,7 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = "SELECT * FROM Reaction";
+            command.CommandText = "SELECT * FROM Reaction WHERE isDel = 0";
             var list = ReadAllAsync(await command.ExecuteReaderAsync()).Result;
 
             List<string> reactions = new List<string>();
@@ -51,7 +51,7 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"SELECT Reaction.uuid, Reaction.type, Reaction.isDel, Reaction.reactant_list_uuid, Reaction.product_list_uuid FROM TagMechanism_Reaction_List LEFT JOIN Reaction ON reaction_uuid = Reaction.uuid WHERE tag_mechanism_uuid = @tag_mechanism_uuid";
+            command.CommandText = @"SELECT Reaction.uuid, Reaction.type, Reaction.isDel, Reaction.reactant_list_uuid, Reaction.product_list_uuid FROM TagMechanism_Reaction_List LEFT JOIN Reaction ON reaction_uuid = Reaction.uuid WHERE tag_mechanism_uuid = @tag_mechanism_uuid AND TagMechanism_Reaction_List.isDel = 0";
             command.Parameters.AddWithValue("@tag_mechanism_uuid", tag_mechanism_uuid);
 
             var list = ReadAllAsync(await command.ExecuteReaderAsync()).Result;
@@ -70,7 +70,7 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"SELECT * FROM Reaction WHERE uuid = @id";
+            command.CommandText = @"SELECT * FROM Reaction WHERE uuid = @id AND isDel = 0";
             command.Parameters.AddWithValue("@id", uuid);
 
             var result = await ReadAllAsync(await command.ExecuteReaderAsync());
