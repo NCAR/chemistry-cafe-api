@@ -34,7 +34,7 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"SELECT TagMechanism.uuid, TagMechanism.tag, TagMechanism.isDel FROM Family_Mechanism_List LEFT JOIN TagMechanism ON tag_mechanism_uuid = TagMechanism.uuid WHERE family_uuid = @family_uuid AND TagMechanism.isDel = False";
+            command.CommandText = @"SELECT TagMechanism.uuid, TagMechanism.tag, TagMechanism.isDel FROM Family_TagMechanism_List LEFT JOIN TagMechanism ON tag_mechanism_uuid = TagMechanism.uuid WHERE family_uuid = @family_uuid AND TagMechanism.isDel = False";
             command.Parameters.AddWithValue("@family_uuid", family_uuid);
 
             return await ReadAllAsync(await command.ExecuteReaderAsync());
