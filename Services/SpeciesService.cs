@@ -13,7 +13,7 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = "SELECT * FROM Species";
+            command.CommandText = "SELECT * FROM Species WHERE isDel = 0";
             return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
 
@@ -34,7 +34,7 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"SELECT Species.uuid, Species.type, Species.isDel FROM TagMechanism_Species_List LEFT JOIN Species ON species_uuid = Species.uuid WHERE tag_mechanism_uuid = @tag_mechanism_uuid";
+            command.CommandText = @"SELECT Species.uuid, Species.type, Species.isDel FROM TagMechanism_Species_List LEFT JOIN Species ON species_uuid = Species.uuid WHERE tag_mechanism_uuid = @tag_mechanism_uuid AND TagMechanism_Species_List.isDel = 0";
             command.Parameters.AddWithValue("@tag_mechanism_uuid", tag_mechanism_uuid);
 
             return await ReadAllAsync(await command.ExecuteReaderAsync());

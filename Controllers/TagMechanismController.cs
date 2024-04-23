@@ -33,10 +33,10 @@ namespace Chemistry_Cafe_API.Controllers
             return await tagMechanismService.GetTagMechanismAsync(uuid);
         }
 
-        [HttpGet("Mechanism/{mechanism_uuid}")]
-        public async Task<IReadOnlyList<TagMechanism>> GetTags(Guid mechanism_uuid)
+        [HttpGet("Family/{family_uuid}")]
+        public async Task<IReadOnlyList<TagMechanism>> GetTags(Guid family_uuid)
         {
-            return await tagMechanismService.GetTagsAsync(mechanism_uuid);
+            return await tagMechanismService.GetTagsAsync(family_uuid);
         }
 
         // POST api/TagMechanism/create

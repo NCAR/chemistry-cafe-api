@@ -13,7 +13,7 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = "SELECT * FROM Property_List";
+            command.CommandText = "SELECT * FROM Property_List WHERE isDel = 0";
             return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
 
@@ -34,9 +34,9 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"SELECT * FROM Property_List RIGHT JOIN Property_Version ON Property_List.uuid = Property_Version.parent_property_uuid 
+            command.CommandText = @"SELECT * FROM Property_List RIGHT JOIN Property_Version ON Property_List.uuid = Property_Version.parent_property_uuid  AND Property_List.version = Property_Version.frozen_version
                 LEFT JOIN PropertyType ON Property_Version.property_type = PropertyType.uuid 
-                WHERE Property_List.parent_uuid = @parent_uuid ORDER BY datetime DESC;";
+                WHERE Property_List.parent_uuid = @parent_uuid AND Property_List.isDel = 0 AND Property_Version.isDel = 0 ORDER BY datetime DESC;";
             command.Parameters.AddWithValue("@parent_uuid", parent_uuid);
 
             return await ReadAllPropertiesAsync(await command.ExecuteReaderAsync());
@@ -122,7 +122,7 @@ namespace Chemistry_Cafe_API.Services
                         property_version_uuid = reader.GetGuid(4),
                         parent_property_uuid = reader.GetGuid(5),
                         frozen_version = reader.GetString(6),
-                        mechanism_uuid = reader.GetGuid(7),
+                        tag_mechanism_uuid = reader.GetGuid(7),
                         property_type = reader.GetGuid(8),
                         user_uuid = reader.GetGuid(14),
                         datetime = reader.GetDateTime(15),

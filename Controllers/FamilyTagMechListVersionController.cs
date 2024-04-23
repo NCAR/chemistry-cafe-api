@@ -9,40 +9,40 @@ namespace Chemistry_Cafe_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FamilyMechListVersionController : ControllerBase
+    public class FamilyTagMechListVersionController : ControllerBase
     {
-        private FamilyMechListVersionService familyMechListVersionService;
+        private FamilyTagMechListVersionService familyMechListVersionService;
         
         //Injects sql data source setup in Program.cs
-        public FamilyMechListVersionController([FromServices] MySqlDataSource db)
+        public FamilyTagMechListVersionController([FromServices] MySqlDataSource db)
         {
-            this.familyMechListVersionService = new FamilyMechListVersionService(db);
+            this.familyMechListVersionService = new FamilyTagMechListVersionService(db);
         }
 
         // GET: api/FamilyMechListVersion/all
         [HttpGet("all")]
-        public async Task<IReadOnlyList<FamilyMechListVersion>> Get()
+        public async Task<IReadOnlyList<FamilyTagMechListVersion>> Get()
         {
             return await familyMechListVersionService.GetFamilyMechListVersionsAsync();
         }
 
         // GET api/FamilyMechListVersion/5
         [HttpGet("{uuid}")]
-        public async Task<FamilyMechListVersion?> Get(Guid uuid)
+        public async Task<FamilyTagMechListVersion?> Get(Guid uuid)
         {
             return await familyMechListVersionService.GetFamilyMechListVersionAsync(uuid);
         }
 
         // POST api/FamilyMechListVersion/create
         [HttpPost("create")]
-        public async Task<Guid> Create([FromBody] FamilyMechListVersion newFamilyMechListVersion)
+        public async Task<Guid> Create([FromBody] FamilyTagMechListVersion newFamilyMechListVersion)
         {
             return await familyMechListVersionService.CreateFamilyMechListVersionAsync(newFamilyMechListVersion);
         }
 
         // PUT api/FamilyMechListVersion/5
         [HttpPut("update")]
-        public async Task Put([FromBody] FamilyMechListVersion newFamilyMechListVersion)
+        public async Task Put([FromBody] FamilyTagMechListVersion newFamilyMechListVersion)
         {
             await familyMechListVersionService.UpdateFamilyMechListVersionAsync(newFamilyMechListVersion);
         }

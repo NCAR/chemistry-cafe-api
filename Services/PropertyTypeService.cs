@@ -15,7 +15,7 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = "SELECT * FROM PropertyType";
+            command.CommandText = "SELECT * FROM PropertyType WHERE isDel = 0";
             return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
 
@@ -29,6 +29,17 @@ namespace Chemistry_Cafe_API.Services
 
             var result = await ReadAllAsync(await command.ExecuteReaderAsync());
             return result.FirstOrDefault();
+        }
+
+        public async Task<IReadOnlyList<PropertyType>> GetPropertyTypeValidationAsync(string validation)
+        {
+            using var connection = await database.OpenConnectionAsync();
+            using var command = connection.CreateCommand();
+
+            command.CommandText = @"SELECT * FROM PropertyType WHERE validation = @validation AND isDel = 0";
+            command.Parameters.AddWithValue("@validation", validation);
+
+            return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
 
         public async Task<Guid> CreatePropertyTypeAsync(PropertyType propertyType)

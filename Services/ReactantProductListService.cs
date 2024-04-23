@@ -23,7 +23,7 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"SELECT * FROM Reactant_Product_List WHERE uuid = @id";
+            command.CommandText = @"SELECT * FROM Reactant_Product_List WHERE reactant_product_uuid = @id";
             command.Parameters.AddWithValue("@id", uuid);
 
             var result = await ReadAllAsync(await command.ExecuteReaderAsync());
@@ -57,11 +57,10 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            Guid reactantProductID = Guid.NewGuid();
 
-            command.CommandText = @"INSERT INTO Reactant_Product_List (uuid, reaction_uuid, species_uuid, quantity) VALUES (@uuid, @reaction_uuid, @species_uuid, @quantity);";
+            command.CommandText = @"INSERT INTO Reactant_Product_List (reactant_product_uuid, reaction_uuid, species_uuid, quantity) VALUES (@reactant_product_uuid, @reaction_uuid, @species_uuid, @quantity);";
 
-            command.Parameters.AddWithValue("@uuid", reactantProductID);
+            command.Parameters.AddWithValue("@reactant_product_uuid", reactantProduct.reactant_product_uuid);
             command.Parameters.AddWithValue("@reaction_uuid", reactantProduct.reaction_uuid);
             command.Parameters.AddWithValue("@species_uuid", reactantProduct.species_uuid);
             command.Parameters.AddWithValue("@quantity", reactantProduct.quantity);
@@ -73,24 +72,27 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Reactant_Product_List SET reaction_uuid = @reaction_uuid, quantity = @quantity, isDel = @isDel WHERE uuid = @uuid;";
+            command.CommandText = @"UPDATE Reactant_Product_List SET quantity = @quantity WHERE reactant_product_uuid = @reactant_product_uuid AND species_uuid = @species_uuid AND reaction_uuid = @reaction_uuid;";
 
-            command.Parameters.AddWithValue("@uuid", reactantProduct.reactant_product_uuid);
+            command.Parameters.AddWithValue("@reactant_product_uuid", reactantProduct.reactant_product_uuid);
             command.Parameters.AddWithValue("@reaction_uuid", reactantProduct.reaction_uuid);
             command.Parameters.AddWithValue("@species_uuid", reactantProduct.species_uuid);
             command.Parameters.AddWithValue("@quantity", reactantProduct.quantity);
 
+
+
             await command.ExecuteNonQueryAsync();
         }
 
-        public async Task DeleteReactantProductListAsync(Guid uuid)
+        public async Task DeleteReactantProductListAsync(DeleteReactantProductList uuids)
         {
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Reactant_Product_List SET isDel = 1 WHERE uuid = @uuid;";
+            command.CommandText = @"DELETE FROM Reactant_Product_List WHERE reactant_product_uuid = @reactant_product_uuid AND species_uuid = @species_uuid;";
 
-            command.Parameters.AddWithValue("@uuid", uuid);
+            command.Parameters.AddWithValue("@reactant_product_uuid", uuids.reactant_product_uuid);
+            command.Parameters.AddWithValue("@species_uuid", uuids.species_uuid);
 
             await command.ExecuteNonQueryAsync();
         }

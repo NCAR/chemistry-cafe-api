@@ -21,9 +21,16 @@ namespace Chemistry_Cafe_API.Controllers
 
         // GET: api/OpenAtmos/JSON
         [HttpGet("JSON/{tag_mechanism_uuid}")]
-        public async Task<string> Get(Guid tag_mechanism_uuid)
+        public async Task<string> GetJSON(Guid tag_mechanism_uuid)
         {
-            return await openAtmosService.Get(tag_mechanism_uuid);
+            return await openAtmosService.GetJSON(tag_mechanism_uuid);
+        }
+
+        // GET: api/OpenAtmos/YAML
+        [HttpGet("YAML/{tag_mechanism_uuid}")]
+        public async Task<string> GetYAML(Guid tag_mechanism_uuid)
+        {
+            return await openAtmosService.GetYAML(tag_mechanism_uuid);
         }
 
     }

@@ -13,7 +13,7 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = "SELECT * FROM Property_Version";
+            command.CommandText = "SELECT * FROM Property_Version WHERE isDel = 0";
             return await ReadAllAsync(await command.ExecuteReaderAsync());
         }
 
@@ -36,14 +36,14 @@ namespace Chemistry_Cafe_API.Services
 
             Guid propertyVersionID = Guid.NewGuid();
 
-            command.CommandText = @"INSERT INTO Property_Version (uuid, parent_property_uuid, frozen_version, mechanism_uuid, property_type,
+            command.CommandText = @"INSERT INTO Property_Version (uuid, parent_property_uuid, frozen_version, tag_mechanism_uuid, property_type,
             float_value, double_value, int_value, string_value, action, user_uuid, datetime) 
-            VALUES (@uuid, @parent_property_uuid, @frozen_version, @mechanism_uuid, @property_type, @float_value, @double_value, @int_value, @string_value, @action, @user_uuid, @datetime);";
+            VALUES (@uuid, @parent_property_uuid, @frozen_version, @tag_mechanism_uuid, @property_type, @float_value, @double_value, @int_value, @string_value, @action, @user_uuid, @datetime);";
 
             command.Parameters.AddWithValue("@uuid", propertyVersionID);
             command.Parameters.AddWithValue("@parent_property_uuid", newPropertyVersion.parent_property_uuid);
             command.Parameters.AddWithValue("@frozen_version", newPropertyVersion.frozen_version);
-            command.Parameters.AddWithValue("@mechanism_uuid", newPropertyVersion.mechanism_uuid);
+            command.Parameters.AddWithValue("@tag_mechanism_uuid", newPropertyVersion.tag_mechanism_uuid);
             command.Parameters.AddWithValue("@property_type", newPropertyVersion.property_type);
             command.Parameters.AddWithValue("@float_value", newPropertyVersion.float_value);
             command.Parameters.AddWithValue("@double_value", newPropertyVersion.double_value);
@@ -62,14 +62,14 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Property_Version SET family_uuid = @family_uuid, frozen_version = @frozen_version, mechanism_uuid = @mechanism_uuid, 
+            command.CommandText = @"UPDATE Property_Version SET family_uuid = @family_uuid, frozen_version = @frozen_version, tag_mechanism_uuid = @tag_mechanism_uuid, 
             property_type = @property_type, float_value = @float_value, double_value = @double_value, int_value = @int_value, string_value = @string_value, action = @action, 
             user_uuid = @user_uuid, datetime = @datetime, isDel = @isDel WHERE uuid = @uuid;";
             
             command.Parameters.AddWithValue("@uuid", propertyVersion.uuid);
             command.Parameters.AddWithValue("@parent_property_uuid", propertyVersion.parent_property_uuid);
             command.Parameters.AddWithValue("@frozen_version", propertyVersion.frozen_version);
-            command.Parameters.AddWithValue("@mechanism_uuid", propertyVersion.mechanism_uuid);
+            command.Parameters.AddWithValue("@mechanism_uuid", propertyVersion.tag_mechanism_uuid);
             command.Parameters.AddWithValue("@property_type", propertyVersion.property_type);
             command.Parameters.AddWithValue("@float_value", propertyVersion.float_value);
             command.Parameters.AddWithValue("@double_value", propertyVersion.double_value);
@@ -107,7 +107,7 @@ namespace Chemistry_Cafe_API.Services
                         uuid = reader.GetGuid(0),
                         parent_property_uuid = reader.GetGuid(1),
                         frozen_version = reader.GetString(2),
-                        mechanism_uuid = reader.GetGuid(3),
+                        tag_mechanism_uuid = reader.GetGuid(3),
                         property_type = reader.GetGuid(4),
                         user_uuid = reader.GetGuid(10),
                         datetime = reader.GetDateTime(11),

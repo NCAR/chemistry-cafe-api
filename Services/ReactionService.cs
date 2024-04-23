@@ -3,6 +3,7 @@ using System.Data.Common;
 using MySqlConnector;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 
 namespace Chemistry_Cafe_API.Services
@@ -14,8 +15,16 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = "SELECT * FROM Reaction";
-            return await ReadAllAsync(await command.ExecuteReaderAsync());
+            command.CommandText = "SELECT * FROM Reaction WHERE isDel = 0";
+            var list = ReadAllAsync(await command.ExecuteReaderAsync()).Result;
+
+            List<string> reactions = new List<string>();
+            foreach (var item in list)
+            {
+                reactions.Add(GetReactionStringAsync(item.uuid).Result);
+            }
+
+            return await ReadAllAsync(await command.ExecuteReaderAsync(), reactions);
         }
 
         public async Task<Reaction?> GetReactionAsync(Guid uuid)
@@ -27,7 +36,14 @@ namespace Chemistry_Cafe_API.Services
             command.Parameters.AddWithValue("@id", uuid);
 
             var result = await ReadAllAsync(await command.ExecuteReaderAsync());
-            return result.FirstOrDefault();
+            List<string> reactions = new List<string>();
+            foreach (var item in result)
+            {
+                reactions.Add(GetReactionStringAsync(item.uuid).Result);
+            }
+
+            var result2 = await ReadAllAsync(await command.ExecuteReaderAsync(), reactions);
+            return result2.FirstOrDefault();
         }
 
         public async Task<IReadOnlyList<Reaction>> GetTags(Guid tag_mechanism_uuid)
@@ -35,10 +51,71 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"SELECT Reaction.uuid, Reaction.type, Reaction.isDel, Reaction.reactant_list_uuid, Reaction.product_list_uuid FROM TagMechanism_Reaction_List LEFT JOIN Reaction ON reaction_uuid = Reaction.uuid WHERE tag_mechanism_uuid = @tag_mechanism_uuid";
+            command.CommandText = @"SELECT Reaction.uuid, Reaction.type, Reaction.isDel, Reaction.reactant_list_uuid, Reaction.product_list_uuid FROM TagMechanism_Reaction_List LEFT JOIN Reaction ON reaction_uuid = Reaction.uuid WHERE tag_mechanism_uuid = @tag_mechanism_uuid AND TagMechanism_Reaction_List.isDel = 0";
             command.Parameters.AddWithValue("@tag_mechanism_uuid", tag_mechanism_uuid);
 
-            return await ReadAllAsync(await command.ExecuteReaderAsync());
+            var list = ReadAllAsync(await command.ExecuteReaderAsync()).Result;
+
+            List<string> reactions = new List<string>();
+            foreach (var item in list)
+            {
+                reactions.Add(GetReactionStringAsync(item.uuid).Result);
+            }
+
+            return await ReadAllAsync(await command.ExecuteReaderAsync(), reactions);
+        }
+
+        public async Task<String?> GetReactionStringAsync(Guid uuid)
+        {
+            using var connection = await database.OpenConnectionAsync();
+            using var command = connection.CreateCommand();
+
+            command.CommandText = @"SELECT * FROM Reaction WHERE uuid = @id AND isDel = 0";
+            command.Parameters.AddWithValue("@id", uuid);
+
+            var result = await ReadAllAsync(await command.ExecuteReaderAsync());
+
+            ReactantProductListService reactantProductListService = new ReactantProductListService(database);
+
+            var reactants = reactantProductListService.GetReactantsAsync(result[0].reactant_list_uuid).Result;
+            var products = reactantProductListService.GetProductsAsync(result[0].product_list_uuid).Result;
+
+            string reactionString = "";
+            bool isReact = false;
+            bool isProduct = false;
+
+            foreach( var reactant in reactants)
+            {
+                reactionString += "" + reactant.quantity + reactant.type + " + ";
+                isReact = true;
+            }
+            if (isReact)
+            {
+                reactionString = reactionString.Remove(reactionString.LastIndexOf('+'));
+            }
+            else
+            {
+                reactionString += "<none> ";
+            }
+
+            reactionString += "-> ";
+
+            foreach ( var product in products)
+            {
+                reactionString += "" + product.quantity + product.type + " + ";
+                isProduct = true;
+            }
+
+            if (isProduct)
+            {
+                reactionString = reactionString.Remove(reactionString.LastIndexOf('+'));
+            }
+            else
+            {
+                reactionString += "<none>";
+            }
+
+            return reactionString;
         }
 
 
@@ -90,9 +167,10 @@ namespace Chemistry_Cafe_API.Services
             await command.ExecuteNonQueryAsync();
         }
 
-        private async Task<IReadOnlyList<Reaction>> ReadAllAsync(DbDataReader reader)
+        private async Task<IReadOnlyList<Reaction>> ReadAllAsync(DbDataReader reader, List<string> reactionString = null)
         {
             var reactions = new List<Reaction>();
+            int i = 0;
             using (reader)
             {
                 while (await reader.ReadAsync())
@@ -111,7 +189,12 @@ namespace Chemistry_Cafe_API.Services
                     {
                         reaction.product_list_uuid = reader.GetGuid(4);
                     }
+                    if (reactionString != null)
+                    {
+                        reaction.reaction_string = reactionString[i];
+                    }
                     reactions.Add(reaction);
+                    i++;
                 }
             }
             return reactions;
