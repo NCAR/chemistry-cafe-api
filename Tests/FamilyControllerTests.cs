@@ -19,5 +19,35 @@ namespace Chemistry_Cafe_API.Tests
 
             Assert.IsNotNull(result);
         }
+
+        [TestMethod]
+        public async Task Creates_family()
+        {
+            var controller = new FamilyController(db);
+
+            var result = await controller.Create("Test") ;
+
+            var getResult = await controller.Get(result.uuid);
+
+            Assert.AreEqual(result.uuid, getResult.uuid);
+        }
+
+        [TestMethod]
+        public async Task Updates_family()
+        {
+            var controller = new FamilyController(db);
+
+            var result = await controller.Create("Test");
+
+            result.name = "Edited";
+
+            await controller.Put(result);
+
+            var getResult = await controller.Get(result.uuid);
+
+            await controller.Delete(result.uuid);
+
+            Assert.AreEqual(result.name, "Edited");
+        }
     }
 }
