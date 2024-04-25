@@ -8,7 +8,7 @@ namespace Chemistry_Cafe_API.Tests
     [TestClass]
     public class TagMechanismControllerTests
     {
-        readonly MySqlDataSource db = new MySqlDataSource("Server=chemisty-cafe.cl8uuceq2rud.us-east-1.rds.amazonaws.com;User ID=cafeadmin;Password=cafeadmin;Port=3306;Database=Testing");
+        readonly MySqlDataSource db = DBConnection.DataSource;
         
         [TestMethod]
         public async Task Get_retrieves_tagmechanism()
@@ -16,6 +16,18 @@ namespace Chemistry_Cafe_API.Tests
             var controller = new TagMechanismController(db);
 
             var result = await controller.Get() as List<TagMechanism>;
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task Get_retrieves_tagmechanism_family()
+        {
+            var controller = new TagMechanismController(db);
+
+            var guid = new Guid("06b7c16f-eb1a-49ef-8798-16fe03fc67ae");
+
+            var result = await controller.GetTags(guid) as List<TagMechanism>;
 
             Assert.IsNotNull(result);
         }
@@ -49,7 +61,7 @@ namespace Chemistry_Cafe_API.Tests
 
             await controller.Delete(result);
 
-            Assert.AreEqual(getResult.tag, "Edited");
+            Assert.AreEqual(getEditedResult.tag, "Edited");
         }
     }
 }

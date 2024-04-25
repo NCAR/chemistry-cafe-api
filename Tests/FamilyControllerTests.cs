@@ -8,12 +8,11 @@ namespace Chemistry_Cafe_API.Tests
     [TestClass]
     public class FamilyControllerTests
     {
-        readonly MySqlDataSource db = new MySqlDataSource("Server=chemisty-cafe.cl8uuceq2rud.us-east-1.rds.amazonaws.com;User ID=cafeadmin;Password=cafeadmin;Port=3306;Database=Testing");
-        
+        FamilyController controller = new FamilyController(DBConnection.DataSource);
+
         [TestMethod]
         public async Task Get_retrieves_family()
         {
-            var controller = new FamilyController(db);
 
             var result = await controller.Get() as List<Family>;
 
@@ -23,7 +22,6 @@ namespace Chemistry_Cafe_API.Tests
         [TestMethod]
         public async Task Creates_family()
         {
-            var controller = new FamilyController(db);
 
             var result = await controller.Create("Test") ;
 
@@ -35,7 +33,6 @@ namespace Chemistry_Cafe_API.Tests
         [TestMethod]
         public async Task Updates_family()
         {
-            var controller = new FamilyController(db);
 
             var result = await controller.Create("Test");
 

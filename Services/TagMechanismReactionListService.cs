@@ -84,8 +84,8 @@ namespace Chemistry_Cafe_API.Services
                     var mechTag = new TagMechanismReactionList
                     {
                         uuid = reader.GetGuid(0),
-                        reaction_uuid = reader.GetGuid(1),
-                        tag_mechanism_uuid = reader.GetGuid(2),
+                        tag_mechanism_uuid = reader.GetGuid(1),
+                        reaction_uuid = reader.GetGuid(2),
                         version = reader.GetString(3),
                         isDel = reader.GetBoolean(4),
                     };

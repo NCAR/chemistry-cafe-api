@@ -62,14 +62,14 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE Property_Version SET family_uuid = @family_uuid, frozen_version = @frozen_version, tag_mechanism_uuid = @tag_mechanism_uuid, 
+            command.CommandText = @"UPDATE Property_Version SET parent_property_uuid = @parent_property_uuid, frozen_version = @frozen_version, tag_mechanism_uuid = @tag_mechanism_uuid, 
             property_type = @property_type, float_value = @float_value, double_value = @double_value, int_value = @int_value, string_value = @string_value, action = @action, 
             user_uuid = @user_uuid, datetime = @datetime, isDel = @isDel WHERE uuid = @uuid;";
             
             command.Parameters.AddWithValue("@uuid", propertyVersion.uuid);
             command.Parameters.AddWithValue("@parent_property_uuid", propertyVersion.parent_property_uuid);
             command.Parameters.AddWithValue("@frozen_version", propertyVersion.frozen_version);
-            command.Parameters.AddWithValue("@mechanism_uuid", propertyVersion.tag_mechanism_uuid);
+            command.Parameters.AddWithValue("@tag_mechanism_uuid", propertyVersion.tag_mechanism_uuid);
             command.Parameters.AddWithValue("@property_type", propertyVersion.property_type);
             command.Parameters.AddWithValue("@float_value", propertyVersion.float_value);
             command.Parameters.AddWithValue("@double_value", propertyVersion.double_value);

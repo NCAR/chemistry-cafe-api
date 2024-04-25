@@ -65,7 +65,7 @@ namespace Chemistry_Cafe_API.Services
             using var connection = await database.OpenConnectionAsync();
             using var command = connection.CreateCommand();
 
-            command.CommandText = @"UPDATE PropertyType SET name = @name, units = @units, validation = @validation, isDel = @isDel,  WHERE uuid = @uuid;";
+            command.CommandText = @"UPDATE PropertyType SET name = @name, units = @units, validation = @validation, isDel = @isDel WHERE uuid = @uuid;";
 
             command.Parameters.AddWithValue("@uuid", propertyType.uuid);
             command.Parameters.AddWithValue("@name", propertyType.name);
