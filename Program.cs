@@ -10,6 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Adds SQL data source from appsettings.json file
+
 builder.Services.AddMySqlDataSource(builder.Configuration.GetConnectionString("Default")!);
 
 

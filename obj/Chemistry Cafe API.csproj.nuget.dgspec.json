@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\College_Stuff\\2024_Spring\\CSCE482\\Project\\chemistry-cafe-api\\Chemistry Cafe API.csproj": {}
+    "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Chemistry Cafe API.csproj": {}
   },
   "projects": {
-    "C:\\College_Stuff\\2024_Spring\\CSCE482\\Project\\chemistry-cafe-api\\Chemistry Cafe API.csproj": {
+    "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Chemistry Cafe API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\College_Stuff\\2024_Spring\\CSCE482\\Project\\chemistry-cafe-api\\Chemistry Cafe API.csproj",
+        "projectUniqueName": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Chemistry Cafe API.csproj",
         "projectName": "Chemistry Cafe API",
-        "projectPath": "C:\\College_Stuff\\2024_Spring\\CSCE482\\Project\\chemistry-cafe-api\\Chemistry Cafe API.csproj",
-        "packagesPath": "C:\\Users\\gigem\\.nuget\\packages\\",
-        "outputPath": "C:\\College_Stuff\\2024_Spring\\CSCE482\\Project\\chemistry-cafe-api\\obj\\",
+        "projectPath": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\Chemistry Cafe API.csproj",
+        "packagesPath": "C:\\Users\\Evan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Evan\\Documents\\GitHub\\chemistry-cafe-api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\gigem\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Evan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -45,6 +45,26 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "MSTest.TestAdapter": {
+              "target": "Package",
+              "version": "[3.3.1, )"
+            },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[3.3.1, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Testing": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
+            "Microsoft.CodeCoverage": {
+              "target": "Package",
+              "version": "[17.9.0, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.9.0, )"
+            },
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.19.6, )"
@@ -60,6 +80,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
+            },
+            "xunit.extensibility.core": {
+              "target": "Package",
+              "version": "[2.7.1, )"
             }
           },
           "imports": [
