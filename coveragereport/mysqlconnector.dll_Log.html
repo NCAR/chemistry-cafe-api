@@ -36,16 +36,16 @@
 <div class="card">
 <div class="card-header">Line coverage</div>
 <div class="card-body">
-<div class="large cardpercentagebar cardpercentagebar96">3%</div>
+<div class="large cardpercentagebar cardpercentagebar96">4%</div>
 <div class="table">
 <table>
 <tr>
 <th>Covered lines:</th>
-<td class="limit-width right" title="32">32</td>
+<td class="limit-width right" title="38">38</td>
 </tr>
 <tr>
 <th>Uncovered lines:</th>
-<td class="limit-width right" title="830">830</td>
+<td class="limit-width right" title="824">824</td>
 </tr>
 <tr>
 <th>Coverable lines:</th>
@@ -57,7 +57,7 @@
 </tr>
 <tr>
 <th>Line coverage:</th>
-<td class="limit-width right" title="32 of 862">3.7%</td>
+<td class="limit-width right" title="38 of 862">4.4%</td>
 </tr>
 </table>
 </div>
@@ -127,7 +127,7 @@
 <tr><td title="SessionMadeConnection(Microsoft.Extensions.Logging.ILogger, string, string, int, bool, bool, bool, bool, bool, bool, bool, bool)"><a href="#file0_line382" class="navigatetohash">SessionMadeConnection(...)</a></td><td>3</td><td>3</td></tr>
 <tr><td title="ServerDoesNotSupportSsl(Microsoft.Extensions.Logging.ILogger, string)"><a href="#file0_line399" class="navigatetohash">ServerDoesNotSupportSsl(...)</a></td><td>0</td><td>4</td></tr>
 <tr><td title="CouldNotConnectToServer(Microsoft.Extensions.Logging.ILogger, System.Exception, string)"><a href="#file0_line411" class="navigatetohash">CouldNotConnectToServer(...)</a></td><td>0</td><td>4</td></tr>
-<tr><td title="SendingPipelinedResetConnectionRequest(Microsoft.Extensions.Logging.ILogger, string, string)"><a href="#file0_line423" class="navigatetohash">SendingPipelinedResetConnectionRequest(...)</a></td><td>0</td><td>4</td></tr>
+<tr><td title="SendingPipelinedResetConnectionRequest(Microsoft.Extensions.Logging.ILogger, string, string)"><a href="#file0_line423" class="navigatetohash">SendingPipelinedResetConnectionRequest(...)</a></td><td>3</td><td>1</td></tr>
 <tr><td title="SendingResetConnectionRequest(Microsoft.Extensions.Logging.ILogger, string, string)"><a href="#file0_line435" class="navigatetohash">SendingResetConnectionRequest(...)</a></td><td>0</td><td>4</td></tr>
 <tr><td title="SendingChangeUserRequest(Microsoft.Extensions.Logging.ILogger, string, string)"><a href="#file0_line447" class="navigatetohash">SendingChangeUserRequest(...)</a></td><td>0</td><td>4</td></tr>
 <tr><td title="SendingChangeUserRequestDueToChangedDatabase(Microsoft.Extensions.Logging.ILogger, string, string)"><a href="#file0_line459" class="navigatetohash">SendingChangeUserRequestDueToChangedDatabase(...)</a></td><td>0</td><td>4</td></tr>
@@ -241,10 +241,10 @@
 <tr><td title="FailedInSendReplyAsync(Microsoft.Extensions.Logging.ILogger, System.Exception, string)"><a href="#file0_line1759" class="navigatetohash">FailedInSendReplyAsync(...)</a></td><td>0</td><td>4</td></tr>
 <tr><td title="CreatingNewConnectionPool(Microsoft.Extensions.Logging.ILogger, int, string)"><a href="#file0_line1771" class="navigatetohash">CreatingNewConnectionPool(...)</a></td><td>3</td><td>1</td></tr>
 <tr><td title="ScanningForLeakedSessions(Microsoft.Extensions.Logging.ILogger, int)"><a href="#file0_line1783" class="navigatetohash">ScanningForLeakedSessions(...)</a></td><td>0</td><td>4</td></tr>
-<tr><td title="FoundExistingSession(Microsoft.Extensions.Logging.ILogger, int)"><a href="#file0_line1795" class="navigatetohash">FoundExistingSession(...)</a></td><td>0</td><td>4</td></tr>
+<tr><td title="FoundExistingSession(Microsoft.Extensions.Logging.ILogger, int)"><a href="#file0_line1795" class="navigatetohash">FoundExistingSession(...)</a></td><td>3</td><td>1</td></tr>
 <tr><td title="DiscardingSessionDueToWrongGeneration(Microsoft.Extensions.Logging.ILogger, int)"><a href="#file0_line1807" class="navigatetohash">DiscardingSessionDueToWrongGeneration(...)</a></td><td>0</td><td>4</td></tr>
 <tr><td title="SessionIsUnusable(Microsoft.Extensions.Logging.ILogger, int, string)"><a href="#file0_line1819" class="navigatetohash">SessionIsUnusable(...)</a></td><td>0</td><td>4</td></tr>
-<tr><td title="ReturningPooledSession(Microsoft.Extensions.Logging.ILogger, int, string, int)"><a href="#file0_line1831" class="navigatetohash">ReturningPooledSession(...)</a></td><td>0</td><td>4</td></tr>
+<tr><td title="ReturningPooledSession(Microsoft.Extensions.Logging.ILogger, int, string, int)"><a href="#file0_line1831" class="navigatetohash">ReturningPooledSession(...)</a></td><td>3</td><td>1</td></tr>
 <tr><td title="ReturningNewSession(Microsoft.Extensions.Logging.ILogger, int, string, int)"><a href="#file0_line1843" class="navigatetohash">ReturningNewSession(...)</a></td><td>3</td><td>1</td></tr>
 <tr><td title="DisposingCreatedSessionDueToException(Microsoft.Extensions.Logging.ILogger, System.Exception, int, string, string)"><a href="#file0_line1855" class="navigatetohash">DisposingCreatedSessionDueToException(...)</a></td><td>0</td><td>4</td></tr>
 <tr><td title="UnexpectedErrorInGetSessionAsync(Microsoft.Extensions.Logging.ILogger, System.Exception, int, string)"><a href="#file0_line1867" class="navigatetohash">UnexpectedErrorInGetSessionAsync(...)</a></td><td>0</td><td>4</td></tr>
@@ -275,11 +275,11 @@
 <h1>File(s)</h1>
 <h2 id="_srcMySqlConnectorMicrosoftExtensionsLoggingGeneratorsMicrosoftExtensionsLoggingGeneratorsLoggerMessageGeneratorLoggerMessagegcs">/_/src/MySqlConnector/Microsoft.Extensions.Logging.Generators/Microsoft.Extensions.Logging.Generators.LoggerMessageGenerator/LoggerMessage.g.cs</h2>
 <p>File &#39;/_/src/MySqlConnector/Microsoft.Extensions.Logging.Generators/Microsoft.Extensions.Logging.Generators.LoggerMessageGenerator/LoggerMessage.g.cs&#39; does not exist (any more).</p>
-<div class="footer">Generated by: ReportGenerator 5.2.5.0<br />4/23/2024 - 3:32:49 PM<br /><a href="https://github.com/danielpalme/ReportGenerator">GitHub</a> | <a href="https://reportgenerator.io">reportgenerator.io</a></div></div>
+<div class="footer">Generated by: ReportGenerator 5.2.5.0<br />4/24/2024 - 8:49:56 PM<br /><a href="https://github.com/danielpalme/ReportGenerator">GitHub</a> | <a href="https://reportgenerator.io">reportgenerator.io</a></div></div>
 <div class="containerright">
 <div class="containerrightfixed">
 <h1>Methods/Properties</h1>
-<a href="#file0_line138" class="navigatetohash percentagebar percentagebar0" title="Line coverage: 3.7% - Log()"><i class="icon-cube"></i>Log()</a><br />
+<a href="#file0_line138" class="navigatetohash percentagebar percentagebar0" title="Line coverage: 4.4% - Log()"><i class="icon-cube"></i>Log()</a><br />
 <a href="#file0_line144" class="navigatetohash percentagebar percentagebar0" title="Line coverage: 0% - DataSourceCreatedWithPoolWithName(Microsoft.Extensions.Logging.ILogger, int, int, string)"><i class="icon-cube"></i>DataSourceCreatedWithPoolWithName(Microsoft.Extensions.Logging.ILogger, int, int, string)</a><br />
 <a href="#file0_line156" class="navigatetohash percentagebar percentagebar0" title="Line coverage: 0% - DataSourceCreatedWithoutPoolWithName(Microsoft.Extensions.Logging.ILogger, int, string)"><i class="icon-cube"></i>DataSourceCreatedWithoutPoolWithName(Microsoft.Extensions.Logging.ILogger, int, string)</a><br />
 <a href="#file0_line168" class="navigatetohash percentagebar percentagebar60" title="Line coverage: 66.6% - DataSourceCreatedWithPoolWithoutName(Microsoft.Extensions.Logging.ILogger, int, int)"><i class="icon-cube"></i>DataSourceCreatedWithPoolWithoutName(Microsoft.Extensions.Logging.ILogger, int, int)</a><br />
@@ -303,7 +303,7 @@
 <a href="#file0_line382" class="navigatetohash percentagebar percentagebar20" title="Line coverage: 25% - SessionMadeConnection(Microsoft.Extensions.Logging.ILogger, string, string, int, bool, bool, bool, bool, bool, bool, bool, bool)"><i class="icon-cube"></i>SessionMadeConnection(Microsoft.Extensions.Logging.ILogger, string, string, int, bool, bool, bool, bool, bool, bool, bool, bool)</a><br />
 <a href="#file0_line399" class="navigatetohash percentagebar percentagebar0" title="Line coverage: 0% - ServerDoesNotSupportSsl(Microsoft.Extensions.Logging.ILogger, string)"><i class="icon-cube"></i>ServerDoesNotSupportSsl(Microsoft.Extensions.Logging.ILogger, string)</a><br />
 <a href="#file0_line411" class="navigatetohash percentagebar percentagebar0" title="Line coverage: 0% - CouldNotConnectToServer(Microsoft.Extensions.Logging.ILogger, System.Exception, string)"><i class="icon-cube"></i>CouldNotConnectToServer(Microsoft.Extensions.Logging.ILogger, System.Exception, string)</a><br />
-<a href="#file0_line423" class="navigatetohash percentagebar percentagebar0" title="Line coverage: 0% - SendingPipelinedResetConnectionRequest(Microsoft.Extensions.Logging.ILogger, string, string)"><i class="icon-cube"></i>SendingPipelinedResetConnectionRequest(Microsoft.Extensions.Logging.ILogger, string, string)</a><br />
+<a href="#file0_line423" class="navigatetohash percentagebar percentagebar60" title="Line coverage: 66.6% - SendingPipelinedResetConnectionRequest(Microsoft.Extensions.Logging.ILogger, string, string)"><i class="icon-cube"></i>SendingPipelinedResetConnectionRequest(Microsoft.Extensions.Logging.ILogger, string, string)</a><br />
 <a href="#file0_line435" class="navigatetohash percentagebar percentagebar0" title="Line coverage: 0% - SendingResetConnectionRequest(Microsoft.Extensions.Logging.ILogger, string, string)"><i class="icon-cube"></i>SendingResetConnectionRequest(Microsoft.Extensions.Logging.ILogger, string, string)</a><br />
 <a href="#file0_line447" class="navigatetohash percentagebar percentagebar0" title="Line coverage: 0% - SendingChangeUserRequest(Microsoft.Extensions.Logging.ILogger, string, string)"><i class="icon-cube"></i>SendingChangeUserRequest(Microsoft.Extensions.Logging.ILogger, string, string)</a><br />
 <a href="#file0_line459" class="navigatetohash percentagebar percentagebar0" title="Line coverage: 0% - SendingChangeUserRequestDueToChangedDatabase(Microsoft.Extensions.Logging.ILogger, string, string)"><i class="icon-cube"></i>SendingChangeUserRequestDueToChangedDatabase(Microsoft.Extensions.Logging.ILogger, string, string)</a><br />
@@ -425,10 +425,10 @@
 <a href="#file0_line1759" class="navigatetohash percentagebar percentagebar0" title="Line coverage: 0% - FailedInSendReplyAsync(Microsoft.Extensions.Logging.ILogger, System.Exception, string)"><i class="icon-cube"></i>FailedInSendReplyAsync(Microsoft.Extensions.Logging.ILogger, System.Exception, string)</a><br />
 <a href="#file0_line1771" class="navigatetohash percentagebar percentagebar60" title="Line coverage: 66.6% - CreatingNewConnectionPool(Microsoft.Extensions.Logging.ILogger, int, string)"><i class="icon-cube"></i>CreatingNewConnectionPool(Microsoft.Extensions.Logging.ILogger, int, string)</a><br />
 <a href="#file0_line1783" class="navigatetohash percentagebar percentagebar0" title="Line coverage: 0% - ScanningForLeakedSessions(Microsoft.Extensions.Logging.ILogger, int)"><i class="icon-cube"></i>ScanningForLeakedSessions(Microsoft.Extensions.Logging.ILogger, int)</a><br />
-<a href="#file0_line1795" class="navigatetohash percentagebar percentagebar0" title="Line coverage: 0% - FoundExistingSession(Microsoft.Extensions.Logging.ILogger, int)"><i class="icon-cube"></i>FoundExistingSession(Microsoft.Extensions.Logging.ILogger, int)</a><br />
+<a href="#file0_line1795" class="navigatetohash percentagebar percentagebar60" title="Line coverage: 66.6% - FoundExistingSession(Microsoft.Extensions.Logging.ILogger, int)"><i class="icon-cube"></i>FoundExistingSession(Microsoft.Extensions.Logging.ILogger, int)</a><br />
 <a href="#file0_line1807" class="navigatetohash percentagebar percentagebar0" title="Line coverage: 0% - DiscardingSessionDueToWrongGeneration(Microsoft.Extensions.Logging.ILogger, int)"><i class="icon-cube"></i>DiscardingSessionDueToWrongGeneration(Microsoft.Extensions.Logging.ILogger, int)</a><br />
 <a href="#file0_line1819" class="navigatetohash percentagebar percentagebar0" title="Line coverage: 0% - SessionIsUnusable(Microsoft.Extensions.Logging.ILogger, int, string)"><i class="icon-cube"></i>SessionIsUnusable(Microsoft.Extensions.Logging.ILogger, int, string)</a><br />
-<a href="#file0_line1831" class="navigatetohash percentagebar percentagebar0" title="Line coverage: 0% - ReturningPooledSession(Microsoft.Extensions.Logging.ILogger, int, string, int)"><i class="icon-cube"></i>ReturningPooledSession(Microsoft.Extensions.Logging.ILogger, int, string, int)</a><br />
+<a href="#file0_line1831" class="navigatetohash percentagebar percentagebar60" title="Line coverage: 66.6% - ReturningPooledSession(Microsoft.Extensions.Logging.ILogger, int, string, int)"><i class="icon-cube"></i>ReturningPooledSession(Microsoft.Extensions.Logging.ILogger, int, string, int)</a><br />
 <a href="#file0_line1843" class="navigatetohash percentagebar percentagebar60" title="Line coverage: 66.6% - ReturningNewSession(Microsoft.Extensions.Logging.ILogger, int, string, int)"><i class="icon-cube"></i>ReturningNewSession(Microsoft.Extensions.Logging.ILogger, int, string, int)</a><br />
 <a href="#file0_line1855" class="navigatetohash percentagebar percentagebar0" title="Line coverage: 0% - DisposingCreatedSessionDueToException(Microsoft.Extensions.Logging.ILogger, System.Exception, int, string, string)"><i class="icon-cube"></i>DisposingCreatedSessionDueToException(Microsoft.Extensions.Logging.ILogger, System.Exception, int, string, string)</a><br />
 <a href="#file0_line1867" class="navigatetohash percentagebar percentagebar0" title="Line coverage: 0% - UnexpectedErrorInGetSessionAsync(Microsoft.Extensions.Logging.ILogger, System.Exception, int, string)"><i class="icon-cube"></i>UnexpectedErrorInGetSessionAsync(Microsoft.Extensions.Logging.ILogger, System.Exception, int, string)</a><br />
