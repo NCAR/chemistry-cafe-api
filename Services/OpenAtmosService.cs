@@ -134,8 +134,10 @@ namespace Chemistry_Cafe_API.Services
                     foreach (ReactantsProducts reactant in reactants)
                     {
                         JSON += "          \"species name\": \"" + reactant.type + "\", \n";
-                        JSON += "          \"coefficient\": \"" + reactant.quantity + "\" \n";
+                        JSON += "          \"coefficient\": \"" + reactant.quantity + "\", \n";
                     }
+                    JSON = JSON.Remove(JSON.LastIndexOf(','));
+                    JSON += "\n";
                     JSON += "        }\n" +
                         "      ], \n";
                 }
@@ -149,8 +151,10 @@ namespace Chemistry_Cafe_API.Services
                     foreach (ReactantsProducts product in products)
                     {
                         JSON += "          \"species name\": \"" + product.type + "\", \n";
-                        JSON += "          \"coefficient\": \"" + product.quantity + "\" \n";
+                        JSON += "          \"coefficient\": \"" + product.quantity + "\", \n";
                     }
+                    JSON = JSON.Remove(JSON.LastIndexOf(','));
+                    JSON += "\n";
                     JSON += "        }\n" +
                         "      ]\n";
                 }
