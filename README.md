@@ -24,6 +24,8 @@ When ran in development mode the API launches a Swagger page with all the routes
 
 Most routes take in JSON as outputs and give responses as JSON.
 
+# File Structure
+This API was written using Controller, Service, Model methodology. The controllers route the incoming traffic and replies using the functions within services which actually do the logic. The models are the various entities in the database.
 
 # License
 
