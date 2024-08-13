@@ -482,33 +482,3 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
-
-bin
-obj
-.vs
-.vs/Chemistry Cafe API/v17/.suo
-.vs/Chemistry Cafe API/v17/.suo
-.vs/Chemistry Cafe API/v17/.suo
-.vs/Chemistry Cafe API/v17/DocumentLayout.json
-bin/Debug/net8.0/Chemistry Cafe API.pdb
-bin/Debug/net8.0/Chemistry Cafe API.dll
-bin/Debug/net8.0/Chemistry Cafe API.exe
-obj/Chemistry Cafe API.csproj.nuget.dgspec.json
-obj/Chemistry Cafe API.csproj.nuget.g.props
-obj/Debug/net8.0/apphost.exe
-obj/Debug/net8.0/ApiEndpoints.json
-obj/Debug/net8.0/Chemistry Cafe API.AssemblyInfo.cs
-obj/Debug/net8.0/Chemistry Cafe API.AssemblyInfoInputs.cache
-obj/Debug/net8.0/Chemistry Cafe API.assets.cache
-obj/Debug/net8.0/Chemistry Cafe API.csproj.AssemblyReference.cache
-obj/Debug/net8.0/Chemistry Cafe API.csproj.CoreCompileInputs.cache
-obj/Debug/net8.0/Chemistry Cafe API.csproj.FileListAbsolute.txt
-obj/Debug/net8.0/Chemistry Cafe API.dll
-obj/Debug/net8.0/Chemistry Cafe API.GeneratedMSBuildEditorConfig.editorconfig
-obj/Debug/net8.0/Chemistry Cafe API.genruntimeconfig.cache
-obj/Debug/net8.0/Chemistry Cafe API.pdb
-obj/Debug/net8.0/Chemistry Cafe API.sourcelink.json
-obj/Debug/net8.0/ref/Chemistry Cafe API.dll
-obj/Debug/net8.0/refint/Chemistry Cafe API.dll
-obj/project.assets.json
-obj/project.nuget.cache
