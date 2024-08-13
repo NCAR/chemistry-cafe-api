@@ -6,6 +6,26 @@ API for the Chemistry Cafe web application found here https://github.com/NCAR/ch
 
 # Getting Started
 
+## Command line
+
+Install the `dotnet` tool
+
+### macOS
+
+```
+brew install dotnet
+```
+
+---
+
+Then build the project
+
+```
+dotnet run
+```
+
+This should start a server. You should be able to access a swagger page on the port that the server stars, for example [http://localhost:5134/swagger](http://localhost:5134)
+
 ## Installing the API locally
 To build and install Chemistry Cafe locally, you must have Visual Studio 2022.
 
