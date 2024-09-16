@@ -31,24 +31,24 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: .
-        file: .devcontainer/Dockerfile.codespace
+        file: Dockerfile
         push: false
-        tags: ghcr.io/ncar/music-box:build-temp
+        tags: ghcr.io/ncar/chemistry-cafe-api:build-temp
 
     - name: Build and push Docker image (latest)
       if: github.ref == 'refs/heads/main'
       uses: docker/build-push-action@v4
       with:
         context: .
-        file: .devcontainer/Dockerfile.codespace
+        file: Dockerfile
         push: true
-        tags: ghcr.io/ncar/music-box:latest
+        tags: ghcr.io/ncar/chemistry-cafe-api:latest
 
     - name: Build and push Docker image (tagged)
       if: startsWith(github.ref, 'refs/tags/')
       uses: docker/build-push-action@v4
       with:
         context: .
-        file: .devcontainer/Dockerfile.codespace
+        file: Dockerfile
         push: true
-        tags: ghcr.io/ncar/music-box:${{ github.ref_name }}
+        tags: ghcr.io/ncar/chemistry-cafe-api:${{ github.ref_name }}
