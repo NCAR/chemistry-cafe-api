@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - docker_workflow
     tags:
       - 'v*.*.*'
   workflow_dispatch:
