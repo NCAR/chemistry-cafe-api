@@ -3,7 +3,8 @@ name: Codecov Coverage
 on:
   push:
     branches:
-      - main, codecov-workflows
+      - main
+      - codecov-workflows
   pull_request:
     branches:
       - main
