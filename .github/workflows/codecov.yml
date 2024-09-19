@@ -1,0 +1,45 @@
+name: Codecov Coverage
+
+on:
+  push:
+    branches:
+      - main, codecov-workflows
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x  
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore
+
+      - name: Run tests and generate coverage report
+        run: |
+          dotnet test --collect:"XPlat Code Coverage" --results-directory ./TestResults
+        continue-on-error: true  # Allow workflow to continue even if some tests fail
+
+      - name: Convert coverage to Codecov format
+        run: |
+          reportgenerator "-reports:./TestResults/**/*.xml" "-targetdir:./coverage" "-reporttypes:Xml"
+
+      # Upload coverage to Codecov
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}  # Use Codecov token from GitHub Secrets
+          file: ./coverage/Cobertura.xml  # The converted coverage report file
+          flags: unittests
