@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - codecov-workflows
   pull_request:
     branches:
       - main
@@ -14,25 +13,39 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout code
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Setup .NET environment
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 6.0.x  
+          dotnet-version: 6.0.x  # Use the version your project requires
 
+      # Restore dependencies
       - name: Restore dependencies
         run: dotnet restore
 
+      # Build the project
       - name: Build
         run: dotnet build --no-restore
 
+      # Run tests and generate coverage report
       - name: Run tests and generate coverage report
         run: |
           dotnet test --collect:"XPlat Code Coverage" --results-directory ./TestResults
-        continue-on-error: true  # Allow workflow to continue even if some tests fail
+        continue-on-error: true
 
+      # Install ReportGenerator
+      - name: Install ReportGenerator
+        run: dotnet tool install --global dotnet-reportgenerator-globaltool
+
+      # Ensure ReportGenerator is in the PATH
+      - name: Add .NET tools to PATH
+        run: echo "::add-path::$(dotnet --tool-path)"
+
+      # Convert coverage report to Codecov format
       - name: Convert coverage to Codecov format
         run: |
           reportgenerator "-reports:./TestResults/**/*.xml" "-targetdir:./coverage" "-reporttypes:Xml"
@@ -41,6 +54,6 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}  # Use Codecov token from GitHub Secrets
-          file: ./coverage/Cobertura.xml  # The converted coverage report file
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage/Cobertura.xml
           flags: unittests
