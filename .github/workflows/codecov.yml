@@ -42,9 +42,9 @@ jobs:
       - name: Install ReportGenerator
         run: dotnet tool install --global dotnet-reportgenerator-globaltool
 
-      # Ensure ReportGenerator is in the PATH
+      # Add ReportGenerator to PATH using environment file
       - name: Add .NET tools to PATH
-        run: echo "::add-path::$(dotnet --tool-path)"
+        run: echo "${HOME}/.dotnet/tools" >> $GITHUB_PATH
 
       # Convert coverage report to Codecov format
       - name: Convert coverage to Codecov format
