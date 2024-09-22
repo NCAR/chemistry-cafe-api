@@ -41,7 +41,7 @@ jobs:
 
       # Step 6: Upload the code coverage report to Codecov
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}  # Add the Codecov token in the GitHub secrets
           files: ./TestResults/coverage.opencover.xml  # Ensure the correct path for the coverage file
