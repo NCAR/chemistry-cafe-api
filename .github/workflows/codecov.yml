@@ -32,28 +32,18 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
 
-      # Run tests and generate coverage report in Cobertura format
-      - name: Run tests and generate coverage report
+     # Step 5: Run tests and collect code coverage
+      - name: Test and calculate coverage
         run: |
-          dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura --results-directory ./TestResults
+          dotnet test --no-build --verbosity normal \
+          /p:CollectCoverage=true /p:CoverletOutputFormat=opencover \
+          /p:CoverletOutput=./TestResults/coverage.opencover.xml
 
-      # Install ReportGenerator
-      - name: Install ReportGenerator
-        run: dotnet tool install --global dotnet-reportgenerator-globaltool
-
-      # Add .NET tools to PATH using environment file
-      - name: Add .NET tools to PATH
-        run: echo "${HOME}/.dotnet/tools" >> $GITHUB_PATH
-
-      # Convert coverage report to Codecov format
-      - name: Convert coverage to Codecov format
-        run: |
-          reportgenerator "-reports:./TestResults/**/coverage.cobertura.xml" "-targetdir:./coverage" "-reporttypes:Cobertura"
-
-      # Upload coverage to Codecov
+      # Step 6: Upload the code coverage report to Codecov
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./coverage/Cobertura.xml
+          token: ${{ secrets.CODECOV_TOKEN }}  # Add the Codecov token in the GitHub secrets
+          files: ./TestResults/coverage.opencover.xml  # Ensure the correct path for the coverage file
           flags: unittests
+          fail_ci_if_error: true
