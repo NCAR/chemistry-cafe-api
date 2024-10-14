@@ -24,7 +24,7 @@ Then build the project
 dotnet run
 ```
 
-This should start a server. You should be able to access a swagger page on the port that the server stars, for example [http://localhost:5134/swagger](http://localhost:5134)
+This should start a server. You should be able to access a swagger page on the port that the server stars, for example [http://localhost:8080/swagger](http://localhost:8080)
 
 ## Installing the API locally
 To build and install Chemistry Cafe locally, you must have Visual Studio 2022.
