@@ -2,6 +2,7 @@ CREATE TABLE `User` (
   `uuid` char(38) NOT NULL,
   `log_in_info` varchar(1000) DEFAULT NULL,
   `isDel` tinyint NOT NULL DEFAULT '0',
+  `role` ENUM('unverified', 'verified', 'admin') NOT NULL DEFAULT 'unverified',
   PRIMARY KEY (`uuid`),
   UNIQUE KEY `uuid` (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
