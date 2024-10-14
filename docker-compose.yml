@@ -1,0 +1,56 @@
+version: "3.8" # Ensure you're using a compatible version
+
+services:
+  postgres:
+    image: postgres:13
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - chemistry-cafe-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      ConnectionStrings__Default: "Host=postgres;Port=5432;Database=chemistry_db;Username=chemistrycafedev;Password=capstonefall2024"
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - chemistry-cafe-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "3000:4173" # Assuming frontend listens on 4173 inside the container
+    depends_on:
+      backend:
+        condition: service_started
+    networks:
+      - chemistry-cafe-network
+
+volumes:
+  db_data:
+
+networks:
+  chemistry-cafe-network:
+    driver: bridge
