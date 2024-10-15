@@ -12,6 +12,8 @@ const RoleManagement: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedRoles, setSelectedRoles] = useState<{ [key: string]: string }>({});
+  const [search, setSearch] = useState<string>(''); // State for search input
+  const [roleFilter, setRoleFilter] = useState<string>('all'); // State for role filter
 
   // Fetch users from the backend when the component mounts
   useEffect(() => {
@@ -46,19 +48,24 @@ const RoleManagement: React.FC = () => {
     try {
       const user = users.find((u) => u.uuid === uuid);
       if (!user) return;
-  
+
       const updatedUser = {
         ...user,
         role: selectedRoles[uuid],
       };
-  
+
       await axios.put(`http://localhost:8080/api/User/update`, updatedUser);
       alert('Role updated successfully!');
     } catch (error) {
       console.error('Error updating role:', error);
-      alert(error);
+      alert('Failed to update role');
     }
   };
+
+  const filteredUsers = users.filter((user) =>
+    user.log_in_info.toLowerCase().includes(search.toLowerCase()) &&
+    (roleFilter === 'all' || user.role === roleFilter)
+  );
 
   if (loading) {
     return <div>Loading users...</div>;
@@ -70,7 +77,26 @@ const RoleManagement: React.FC = () => {
 
   return (
     <div>
-      <h1>All Users</h1>
+      <h1>Role Management</h1>
+      <div style={{ marginBottom: '10px' }}>
+        <input
+          type="text"
+          placeholder="Search by email"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          style={{ marginRight: '10px', padding: '5px', width: '200px' }}
+        />
+        <select
+          value={roleFilter}
+          onChange={(e) => setRoleFilter(e.target.value)}
+          style={{ padding: '5px' }}
+        >
+          <option value="all">All</option>
+          <option value="unverified">Unverified</option>
+          <option value="verified">Verified</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
       <table>
         <thead>
           <tr>
@@ -80,7 +106,7 @@ const RoleManagement: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {filteredUsers.map((user) => (
             <tr key={user.uuid}>
               <td>{user.log_in_info}</td>
               <td>
