@@ -40,7 +40,7 @@ namespace Chemistry_Cafe_API.Controllers
             return await userService.CreateUserAsync(log_in_info);
         }
 
-        // PUT api/User/5
+        // PUT api/User/update
         [HttpPut("update")]
         public async Task Put([FromBody] User user)
         {
